@@ -1,0 +1,11 @@
+Ej 1.
+Recorrer los caracteres uno a uno. Si es un espacio y hubo una letra o dígito antes, suma en 1 el contador de palabras. Devolver el contador de palabras.
+
+Ej 2.
+Recorrer los caracteres uno a uno. Si es un espacio, hubo una letra o dígito antes y hubieron más letras o dígitos que el límite, suma en 1 el contador de palabras. Devolver el contador de palabras.
+
+Ej 3. Lectura de archivos
+Crear un lector de archivos dirigido al archivo especificado, envolverlo en un lector con buffer, obtener las líneas de texto una por una y devolverlas en un vector.
+
+Ej 4. Cantidad de palabras
+Obtener la cantidad de palabras de cada String del vector y sumarlas.

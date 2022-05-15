@@ -1,0 +1,29 @@
+Lenguaje natural:
+Si la lista está vacía, fijar el primero como el producto ingresado. Si no, recorrer los elementos desde el principio hasta alcanzar el último, y "engancharle" el producto ingresado.
+
+Precondiciones:
+	El producto no es nulo
+	El producto no existe en la lista
+
+Poscondiciones:
+	La cantidad de productos sube en 1
+	El último producto es el ingresado en la función
+	Los demás productos no cambian, ni de orden, ni en su estado interno
+
+Pseudocódigo:
+Función insertarProducto(producto : tipoProducto)
+	Si vacía
+		primero = producto
+	Sino
+		elemento = buscar(producto)
+		Si elemento no es nulo
+			elemento.stock += 1
+		Fin si
+	Sino
+		actual = primero
+		Mientras actual.siguiente no es nulo
+			actual = actual.siguiente
+		Fin mientras
+		actual.siguiente = producto
+	Fin si
+Fin

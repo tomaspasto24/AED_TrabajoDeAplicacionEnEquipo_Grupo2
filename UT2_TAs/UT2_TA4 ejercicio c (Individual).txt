@@ -1,0 +1,6 @@
+UT2_TA4 Ejercicio c 
+
+Es posible aplicar dividir y conquistar para calcular el i-ésimo número de la seria de Fibonacci porque se hace dos llamadas
+recursivas para calcular cada número de la sucesión, ambas llamadas son subproblemas disjuntos. Por ejemplo, para cada n 
+numero que se quiera calcular, el algoritmo recursivo hará llamadas recursivas para n-1 y n-2, y así sucesivamente hasta
+que llegue a los casos bases (siendo 1 y 2, donde devolvería 1). El órden de tiempo de ejecución es de O(2^n).
