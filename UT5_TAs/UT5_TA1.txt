@@ -1,0 +1,43 @@
+Lenguaje Natural: Si la raíz es diferente de nulo se invoca el método recursivo Buscar comenzando por la raíz. En cada llamada se verifica si la etiqueta del 
+nodo actual es igual a la etiqueta del parámetro, en caso de serlo retorna el nodo actual. En caso de no serlo y el hijo es distinto de nulo se realiza la llamada
+recursiva. En caso de que los hijos devuelvan nulo, se asigna al hijo como el siguiente hermano.
+
+Precondiciones:
+El árbol no puede ser cíclico.
+
+
+Postcondiciones:
+Ningún elemento sufre modificaciones en el árbol.
+El elemento retornado es una referencia al contenido en el árbol.
+
+
+Órden de tiempo de ejecución O(n). Ya que en el peor tenemos que recorrer todo el arbol.
+
+
+//TArbol
+Buscar(unaEtiqueta):TElementoArbol
+COMIENZO
+	SI this.raiz <> nulo
+		devolver this.raiz.Buscar(unaEtiqueta)
+	FIN SI 
+	devolver nulo
+FIN
+
+//TElementoArbol
+Buscar(unaEtiqueta):TElementoArbol
+COMIENZO
+	SI this.etiqueta == unaEtiqueta
+		devolver this
+	SINO
+		TElementoArbol hijo = this.primerHijo
+		res = nulo
+		MIENTRAS  hijo <> nulo
+			res = hijo.Buscar(unaEtiqueta)
+			SI res == nulo
+				hijo = hijo.siguienteHermano
+			FIN SI
+		FIN MIENTRAS
+		devolver res
+	FIN SI 
+FIN 
+
