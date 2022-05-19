@@ -1,0 +1,36 @@
+Grupo 1: Tomás Silva, Sofia Pareja, Alvaro Machado, Santiago de Olivera, Sebastián Fripp
+
+Ejercicio #2 Operadores:
+1)
+int result = 1 + 2; //No se puede cambiar a operador compuesto
+System.out.println(result);
+
+result = result - 1; //se puede cambiar a operador compuesto, result -= 1;
+System.out.println(result);
+
+result = result * 2; //se puede cambiar a operador compuesto, result *= 2;
+System.out.println(result);
+
+result = result / 2; //se puede cambiar a operador compuesto, result /=2;
+System.out.println(result);
+
+result = result + 8; //se puede cambiar a operador compuesto, result +=8;
+result = result % 7; //se puede cambiar a operador compuesto, result %=7;
+System.out.println(result);
+
+2)
+Se incrementa el valor de i en primer lugar, y luego se ejecuta la operacion a = a+i;
+
+3)
+4, 5, 6, 6, 7
+
+Ejercicio #3 Expresiones:
+1-b
+2-a
+3-d
+4-c
+
+Ejercicio #4 Control de flujo:
+1)a) 
+	"second string"
+	"third string"

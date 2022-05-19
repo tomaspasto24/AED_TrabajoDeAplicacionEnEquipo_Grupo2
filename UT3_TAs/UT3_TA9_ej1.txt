@@ -1,0 +1,35 @@
+UT3_TA9 ej 1
+
+La firma del método eliminar es: public Nodo<T> Eliminar(Comparable etiquetaAeliminar)
+Este método recorrería los nodos.siguiente verificando si la etiqueta de cada uno coincide con la pasada por parámetro, en este caso, el nodo (siendo el anterior a eliminar) cambia su propiedad siguiente al siguiente del nodo a eliminar. Esto resultaría con el nodo anterior a eliminar apuntando siguiente al siguiente, y el nodo a eliminar.siguiente apuntando a núlo.
+
+Nodo Eliminar(etiquetaAEliminar)
+{
+	Si esVacia hacer
+		devolver null;
+	
+	Sino
+	
+		Nodo aux = lista.primero;
+		Si aux.etiqueta == etiquetaAEliminar hacer
+			lista.primero = aux.siguiente;
+			aux.siguiente = null;
+			devolver aux;
+		Sino
+			Mientras aux.siguiente != null hacer
+				Si aux.siguiente.etiqueta == etiquetaAEliminar hacer
+					Nodo aux2 = aux.siguiente;
+					aux.siguiente = aux2.siguiente;
+					aux2.siguiente = null; 
+					devolver aux2;				
+				Fin si
+				aux = aux.siguiente
+			Fin mientras
+		Fin si
+	Fin si					
+		
+		
+	}
+	
+}
+

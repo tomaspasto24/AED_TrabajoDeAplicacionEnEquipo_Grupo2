@@ -1,0 +1,73 @@
+UT2_PD2:
+
+Ejercicio 1: 
+
+1) 
+	factorial( num ):
+		Si num == 1		/* Caso base */
+			retornar 1		/* Sentencia del caso base */	
+		Sino 
+			retornar num * factorial(num-1)
+
+Suponiendo que el número de entrada ingresado es mayor a 0, este siempre se multiplica entre si mismo y 
+entre la referencia de la llamada, a la que se le ingresa como parámetro la entrada misma - 1. Por lo que
+va de forma decreciente en 1 hasta llegar a que la entrada es igual a 1.  
+
+2) El órden de ejecución del algoritmo es O(n).
+
+3) En caso de que la entrada sea negativa, va a producir un loop infinito sobrecargando las llamadas recursivas 
+y llenando la memoria. Para solucionar este problema se crea una rutina de preparación de la función que devuelve
+un IllegalArgumentException cuando captura la entrada como menor o igual a 0.
+
+
+Ejercicio 2:
+
+1) 
+	
+	sumaLineal(arr, n):
+		Si n == 1		/* Caso base */
+			devolver arr[0] /* Sentencia del caso base */	
+		Sino
+			devolver sumaLineal(arr, n-1) + A[n-1]
+
+Como en el algoritmo del ejercicio 1 se asegura la llegada del caso base siempre que se cumplen las precondiciones:
+n mayor o igual 1, arr con al menos n elementos. Porque la entrada n, al decrecer en 1 y el caso base espera que n 
+sea igual a 1. 
+
+2) El órden de ejecución del algoritmo es O(n).
+
+3) Si el parámetro n es negativo el algoritmo se iría a un infinite loop y haría llamadas recursivas hasta 
+agotar la memoria. Si el array es vacío, el algoritmo se quedaría fuera del alcance lo que produciría un error. 
+En cualquiera de estos casos se capturan con una rutina de preparación antes de la llamada a la función recursiva.
+
+
+Ejercicio 3:
+
+1) 
+    potenciaNumero(num, exp):
+        Si exp == 0          /* Caso base */
+            devolver 1;     /* Sentencia del caso base */
+        Sino
+            devolver potenciaNumero(num, exp - 1) * num;
+
+Se verifica que el algoritmo llega al caso base siempre que se cumplan las precondiciones, porque el exponente
+decrece en 1 y el caso base espera que esta variable sea 0 para terminar con las llamadas recursivas.
+
+2) El órden de ejecución del algoritmo es O(n).
+
+3) El algoritmo contempla números reales y negativos en el número pero no en el exponente.
+
+
+Ejercicio 3:
+
+1) 
+    invertirArray(arr, i, j):
+        Si i > j
+            devolver arr
+        Sino 
+            Intercambiar A[i] por A[j]
+            devolver invertirArray(arr, i+1, j-1) 
+
+2) El órden de ejecución del algoritmo es O(n2).
+
+ 

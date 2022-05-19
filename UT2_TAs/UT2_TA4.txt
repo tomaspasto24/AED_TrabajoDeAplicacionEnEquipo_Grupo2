@@ -1,0 +1,58 @@
+Ejercicio 1:
+Si el conjunto no tiene elementos, se devuelve NULL.
+Si el conjunto tiene un elemento, se devuelve la referencia a dicho elemento si es el correcto, o NULL si no es el correcto.
+Si el conjunto tiene más de un elemento, dividir el conjunto por la mitad, buscar en ambos conjuntos el elemento y juntar las respuestas con disjunción: si alguno de los dos resultados no es NULL, se devuelve dicho resultado. Si no, se devuelve NULL.
+
+1. Subproblemas: Buscar el elemento en las dos conjuntos de la partición.
+
+def find_key(set, key):
+	if set.len() == 0:
+		return NULL
+	if set.len() == 1:
+		return set[0] == key ? key : NULL
+	mid = set.len() // 2
+	r_left  = find_key(set[:mid], key)
+	r_right = find_key(set[mid:], key)
+	return r_left || r_right
+
+2. N * log(N)
+
+
+
+Ejercicio 2 - Parte A
+
+Función factorial(entero no negativo i)
+	Si n = 0
+		Devolver 1
+	Si no
+		res = 0
+		Repetir i veces
+			res = res + factorial(i - 1)
+		Fin repetir
+		Devolver res
+	Fin si
+Fin
+
+
+Parte B
+
+Funcion altura<T>(TArbolBinario<T> arbol)
+	Devolver altura_nodo(arbol.raiz)
+Fin
+
+Función altura_nodo<T>(TNodoAB<T> nodo)
+	res = 0
+	Si existe nodo.hl:
+		mid_res = altura_nodo(nodo.hl)
+		Si mid_res > res
+			res = mid_res
+		Fin si
+	Fin si
+	Si existe nodo.hr:
+		mid_res = altura_nodo(nodo.hr)
+		Si mid_res > res
+			res = mid_res
+		Fin si
+	Fin si
+	Devolver res + 1
+Fin

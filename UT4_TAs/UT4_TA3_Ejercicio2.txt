@@ -1,0 +1,96 @@
+Ejercicio 2:
+Subequipo A:
+
+1)-
+	Precondiciones:
+		
+	Postcondiciones:
+		Si tengo un solo nodo en el arbol, la altura es 1.
+		Si tengo un arbol vacio, la altura es 0.
+		Si no es ninguno de estos casos, la altura es Max(hijoIzq, hijoDer)+1.
+		No se modifica el arbol.
+2)-
+	Proc testAlturaArbolVacio(). Se crea un arbol, verificamos que la altura del mismo sea 0
+	
+	Proc testAltruaArbolUnElemento(). Se crea un arbol, se le ingresa un elemento.
+									  Se verifica que la altura del mismo sea 1.
+
+	Proc testAlturaArbol5Elementos(). Se crea un arbol, se ingresan los siguientes elementos [2,1,4,5,6]
+									  Se verifica que la altura del mismo sea 4.							
+	Proc testAltruaArbolNoCambia().	  Se crea un arbol, se ingresan los siguientes elementos [2,1,4,5,6].
+									  Se invoca a los metodos preorden, inorden y postorden.
+									  Invocamos al metodo altura
+									  Volvemos a invocar a los metodos preorden, inorden y postorden.
+									  Verificamos que el resultado del preorden, inorden y postorden sea el mismo antes y despues de invocar al metodo altura.
+3)-
+	Proc testAlturaArbolVacio()
+	Comienzo
+		//Given
+		arbol = new Arbol()
+		
+		//When
+		int alt =arbol.altura()
+		
+		//Then
+		AssertEquals(alt,-1)
+	Fin
+
+	Proc testAlturaArbolUnElemento()
+	Comienzo
+	
+		//Given
+		arbol = new Arbol()
+		arbol.insertar("1")
+		
+		//When
+		int alt =arbol.altura()
+		
+		//Then
+		AssertEquals(alt,0)
+	Fin
+	
+	Proc testAltruaArbol5Elementos()
+	Comienzo
+		//Given
+		arbol = new Arbol()
+		arbol.insertar("2")
+		arbol.insertar("1")
+		arbol.insertar("4")
+		arbol.insertar("5")
+		arbol.insertar("6")
+
+		//When
+		int alt =arbol.altura()
+		
+		//Then
+		AssertEquals(alt,3)
+	Fin
+	
+	Proc testAltruaArbolNoCambia()
+	Comienzo
+		//Given
+		arbol = new Arbol()
+		arbol.insertar("2")
+		arbol.insertar("1")
+		arbol.insertar("4")
+		arbol.insertar("5")
+		arbol.insertar("6")
+		
+		String preOrdenPreAltura = arbol.preOrden()
+		String inOrdenPreAltura = arbol.inOrden()
+		String postOrdenPreAltura = arbol.postOrden()
+
+		//When
+		int alt =arbol.altura()
+		 
+		String preOrdenPostAltura = arbol.preOrden()
+		String inOrdenPostAltura = arbol.inOrden()
+		String postOrdenPostAltura = arbol.postOrden()
+		
+			
+		//Then
+		AssertEquals(preOrdenPreAltura, preOrdenPostAltura)
+		AssertEquals(inOrdenPreAltura, inOrdenPostAltura)
+		AssertEquals(postOrdenPreAltura, postOrdenPostAltura)
+
+	Fin

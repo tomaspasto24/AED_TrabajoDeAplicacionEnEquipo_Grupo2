@@ -1,0 +1,41 @@
+1) Conjunto de candidatos: 11, 5, 1 (monedas)
+función solución: devuelve true si solo si, la suma de las monedas es igual al valor requerido.
+función selección: toma el elemento más prometedor, la moneda más alta que es menor o igual al valor requerido - la suma de las monedas obtenidas.
+función factibilidad: devuelve true si solo si las suma de las monedas es menor al valor requerido.
+función objetivo: cantidad de monedas en el conjunto solución (monedas devueltas).
+
+funcionMonedas(num)
+	monedasSolucion = {}
+	monedas = {11, 5, 1}
+	noSolucion = verdadero	
+
+	Mientras noSolucion
+		dif = num - Sum(monedasSolucion)	// diferencia
+	
+		mon = Seleccionar(monedas) 		// seleccion
+	
+		Si mon <= dif				// seleccion 
+			monedasSolucion.Add(mon)
+		Sino
+			monedas.Delete(mon)
+		
+		Si Sum(monedasSolucion) == num	//
+			noSolucion = falso
+		fin Mientras
+
+	return monedasSolucion
+
+fin 
+
+Órden de ejecución O(n)
+
+
+2)
+
+memoria = [1] // Vector de enteros
+Funcion factorial(entero no negativo n)
+	Si n >= len(memoria)
+		memoria[n] = factorial(n - 1) * n
+	Fin si
+	Devolver memoria[n]
+Fin

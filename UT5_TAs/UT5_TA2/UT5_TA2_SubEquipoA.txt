@@ -1,0 +1,56 @@
+//Trie
+Lenguaje Natural:
+	Se verifica que la raiz no tenga hijos. En caso de que la raiz no tenga hijos entonces se retorna nulo.
+	En cualquier otro caso, se invoca al metodo buscar de la raiz.
+	Una vez en el metodo, por cada caracter de la palabra obtenemos el hijo. En caso de ser nulo devolvemos nulo.
+	En caso contrario seguimos recorriendo la palabra. Una vez terminado de recorrer la palabra, se verifica si la lista de paginas es vacia, en ese caso
+	se retorna nulo. En caso contrario se retorna el nodo actual.
+
+Precondiciones:
+				El trie no tiene ciclos.
+				La raiz no es nula.
+Postcondiciones:
+				No se modifica el trie.
+				
+buscar(String palabra): NodoTrie
+COMIENZO
+	SI this.raiz.hijos <> nulo
+		devolver this.raiz.buscar(palabra)
+	FIN SI
+	devolver nulo		
+FIN
+
+
+
+//NodoTrie
+buscar(String palabra):NodoTrie
+COMIENZO 
+	nodoAcutal = this
+	PARA CADA caracter en palabra HACER
+		unHijo = this.obtenerHijo(caracter)
+		SI unHijo == nulo ENTONCES
+			devolver nulo
+		SINO
+			nodoAcutal = unHijo
+		FIN SI 
+	FIN PARA CADA
+	SI nodoAcutal.paginas.esVacia() ENTONCES
+		devolver nulo
+	SINO 
+		devolver nodoAcutal
+	FIN SI
+FIN
+
+Orden de tiempo de ejecucion del algoritmo. El orden de tiempo de ejecucion es O(n) siendo n el largo de la palabra.
+
+
+
+
+//Metodo Aux
+obtenerHijo(char letra):NodoTrie
+COMIENZO
+	entero index = charAt(letra)-'a'
+	SI index >= 0  && index<=25
+		devolver this.hijos[index]
+	devolver nulo
+FIN
