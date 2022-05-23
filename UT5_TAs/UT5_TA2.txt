@@ -1,0 +1,29 @@
+Lenguaje natural: Se recorren los carácteres de la palabra a insertar, a su vez se almacena el nodoActual como el primer nodo del Trie. El cual se va asignando a su hijo en caso de que el carácter seleccionado coincida con uno de sus hijos, en caso contrario se crea el hijo y se repite el proceso. Al final, se asigna el nodo final como fin de palabra.
+
+Precondiciones:
+La estructura del Trie debe de ser correcta.
+La cadena ingresada debe ser de tipo cadena de texto y cada carácter debe de estar contenido en el alfabeto.
+La cadena ingresada no debe ser igual a otra cadena anteriormente ingresada en el mismo trie.
+
+Postcondiciones:
+La referencia al trie modificará su estado para contener la palabra ingresada.
+En caso de que la palabra ingresada sea vacía, no se modificará el estado del trie.
+
+insertarPalabra(cadena: palabra, int[]: paginas): vacío
+	nodoActual = this						  O(1)
+	Para cada caracter de palabra hacer  		  O(n), donde n es la longitud de la palabra
+		hijo = nodoActual.buscarHijo(caracter)  	  O(1), porque utilizamos un array para representar los hijos
+		Si hijo = nulo entonces    			  O(1)
+			hijo = new TNodoTrie(caracter)  	  O(1)
+			nodoActual.insertarHijo(caracter, hijo)  O(1), porque utilizamos un array para representar los hijos
+		Fin si
+		nodoActual = hijo  O(1)
+	Fin para cada
+	nodoActual.paginas = paginas  O(1)
+Fin
+
+Orden de ejecución: O(n)
+
+
+Insertar un hijo en una posición de un nodo:
+Fijar en la posición del array de hijos del nodo 
