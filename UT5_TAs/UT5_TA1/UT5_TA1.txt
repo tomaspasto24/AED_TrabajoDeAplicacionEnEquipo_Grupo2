@@ -35,6 +35,8 @@ COMIENZO
 			res = hijo.Buscar(unaEtiqueta)
 			SI res == nulo
 				hijo = hijo.siguienteHermano
+			SINO
+				devolver res
 			FIN SI
 		FIN MIENTRAS
 		devolver res

@@ -1,0 +1,37 @@
+//ArbolTrie
+predecir(String unPrefijo):LinkedList
+COMIENZO
+	lista = nueva LinkedList
+	SI raiz <> nulo
+		devolver raiz.predecir(unPrefijo,lista)
+	FIN SI
+	devolver nulo
+FIN
+
+//NodoTrie
+predecir(String unPrefijo, LinkedList unaLista): LinkedList
+COMIENZO
+	NodoTrie aux = buscarNodoPrefijo(unPrefijo)
+	SI aux <> nulo
+		aux.predecirAux(unPrefijo,unaLista)
+		devolver unaLista
+	FIN SI
+	devolver nulo
+FIN
+
+
+predecirAux(String texto, LinkedList unaLista) : vacio
+COMIENZO
+	SI this.esPalabra
+		unaLista.add(texto)
+	FIN SI 
+	c = 0
+	MIENTRAS c < largoAlfabeto
+		SI this.hijos[c] <> nulo
+			this.hijos[c].predecirAux(texto + (char) (c + 'a'),nodo,unaLista)
+		FIN SI 
+		c++
+	FIN MIENTRAS
+FIN
+
+	
