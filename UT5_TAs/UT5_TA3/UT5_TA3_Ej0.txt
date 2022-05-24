@@ -1,0 +1,17 @@
+Lenguaje natural:
+	ArbolTrie.predecir(String prefijo): LinkedList
+		Se fija el nodo actual como la raíz del árbol.
+		Para cada caracter del prefijo:
+			Se busca el hijo del nodo actual asociado con el caracter.
+			Si no existe, se devuelve una lista vacía.
+			Se fija el nodo actual como el hijo encontrado.
+		Se crea una LinkedList.
+		Se llama a la función NodoTrie.predecir sobre el nodo actual, con el prefijo y la LinkedList.
+		Se devuelve la LinkedList.
+
+	NodoTrie.predecir(String prefijo, LinkedList lista): vacio
+		Si el nodo no tiene hijos:
+			Se añade el prefijo a la lista.
+		Sino:
+			Para cada hijo del nodo:
+			Se llama a la función NodoTrie.predecir sobre el hijo, con el prefijo más su caracter correspondiente y la misma lista.
