@@ -5,9 +5,9 @@ COM
 	hash = this.funcionHashing(unaClave)
 	PARA CADA i DE 0 a this.tamanio
 		SI this.arr[hash] es NULO ENTONCES
-			DEVOLVER NULO
+			DEVOLVER i + 1
 		SINO SI this.arr[hash] == unaClave ENTONCES
-			DEVOLVER hash
+			DEVOLVER i + 1
 		FIN SI
 		hash = (hash + 1) MOD this.tamanio
 	FIN PARA CADA
