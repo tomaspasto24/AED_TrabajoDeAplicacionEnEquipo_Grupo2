@@ -1,0 +1,14 @@
+buscar:
+
+FUNCIÓN THash.buscar(unaClave: int): int
+COM
+	hash = this.funcionHashing(unaClave)
+	PARA CADA i DE 0 a this.tamanio
+		SI this.arr[hash] es NULO ENTONCES
+			DEVOLVER NULO
+		SINO SI this.arr[hash] == unaClave ENTONCES
+			DEVOLVER hash
+		FIN SI
+		hash = (hash + 1) MOD this.tamanio
+	FIN PARA CADA
+FIN
