@@ -1,0 +1,110 @@
+buscar:
+
+Lenguaje natural:
+Dada una clave, se calcula el hash de la clave. Se recorre todo el vector del THash.
+	Si en algún punto se halla un espacio vacío o un espacio cuyo valor es igual al de la clave, se devuelve el número de comparaciones hechas.
+	Si no, se devuelve la longitud del diccionario.
+
+Precondiciones:
+	El THash debe haber estado correctamente hecho anteriormente.
+
+Postcondiciones:
+	El THash se mantiene intacto.
+	Si la clave no está y el THash está lleno, se devuelve el tamaño del THash.
+	El THash está correctamente hecho.
+
+FUNCIÓN THash.buscar(unaClave: int): int
+COM
+	hash = this.funcionHashing(unaClave)					O(f(N))
+	PARA CADA i DE 0 a this.tamanio						O(N)
+		SI this.arr[hash] es NULO ENTONCES				O(1)
+			DEVOLVER i + 1						O(1)
+		SINO SI this.arr[hash] == unaClave ENTONCES			O(1)
+			DEVOLVER i + 1						O(1)
+		FIN SI
+		hash = (hash + 1) MOD this.tamanio				O(1)
+	FIN PARA CADA
+	DEVOLVER this.tamanio							O(1)
+FIN
+
+Orden de ejecución:
+Por la regla de la suma, el orden de ejecución de la función es O(N + f(N)), siendo f(N) el orden de ejecución de la función de hash utilizada, en el peor caso.
+
+
+
+
+
+insertar:
+
+Lenguaje natural:
+Dada una clave, se calcula el hash de la clave. Se recorre todo el vector del THash.
+	Si en algún punto se halla un espacio vacío, se añade la clave en dicho espacio y se devuelve el número de comparaciones hechas.
+	Si no, y si se halla un espacio cuyo valor es igual al de la clave, se devuelve el número de comparaciones hechas.
+	Si no, se devuelve la longitud del diccionario.
+
+Precondiciones:
+	El THash debe haber estado correctamente hecho anteriormente.
+
+Postcondiciones:
+	Si la clave ya está, el THash se mantiene intacto.
+	Si la clave no está y el THash está lleno, se devuelve el tamaño del THash.
+	El THash está correctamente hecho.
+
+FUNCIÓN THash.insertar(unaClave: int): int
+COM
+	hash = this.funcionHashing(unaClave)					O(f(N))
+	PARA CADA i DE 0 a this.tamanio						O(N)
+		SI this.arr[hash] es NULO ENTONCES				O(1)
+			this.arr[hash] = unaClave				O(1)
+			DEVOLVER i + 1						O(1)
+		SINO SI this.arr[hash] == unaClave ENTONCES			O(1)
+			DEVOLVER i + 1						O(1)
+		FIN SI
+		hash = (hash + 1) MOD this.tamanio				O(1)
+	FIN PARA CADA
+	DEVOLVER this.tamanio							O(1)
+FIN
+
+Orden de ejecución:
+Por la regla de la suma, el orden de ejecución de la función es O(N + f(N)), siendo f(N) el orden de ejecución de la función de hash utilizada, en el peor caso.
+
+
+
+
+
+funcionHashing:
+
+Lenguaje natural:
+	Dada una clave k.
+	Se divide entre un número primo concreto w (en este caso usaremos 7).
+	Se calcula la parte fraccionaria.
+	Se multiplica por el tamaño de la tabla, la cual conviene que sea un número primo.
+	Se calcula la parte entera.
+	Se devuelve el resultado.
+
+// int(N * (k / w) mod 1)
+
+Precondiciones:
+	El THash debe haber estado correctamente hecho anteriormente.
+
+Postcondiciones:
+	El THash se mantiene intacto.
+	Si la clave no está y el THash está lleno, se devuelve el tamaño del THash.
+	El THash está correctamente hecho.
+
+Pseudocódigo:
+FUNCIÓN THash.funcionHashing(unaClave: int): int
+COM
+	// Math.floor recibe un número decimal y devuelve la parte entera del mismo
+	DEVOLVER int(this.arr.length * ((unaClave / 7) mod 1))
+FIN
+
+Orden de ejecución:
+Todas las operaciones son de orden de ejecución O(1).
+Por lo tanto, el orden de ejecución es O(1).
+
+
+
+
+
+Decidimos que el tamaño del vector de THash en este caso sería de 222.
