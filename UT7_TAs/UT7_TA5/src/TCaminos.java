@@ -34,4 +34,18 @@ public class TCaminos {
         return caminos;
     }
         
+    public TCamino caminoMenorCosto() {
+        // "res" significa "resultado"
+        TCamino res = null;
+        double costo = Double.MAX_VALUE;
+        for (TCamino camino : this.caminos) {
+            if (camino.getCostoTotal() < costo) {
+                costo = camino.getCostoTotal();
+                res = camino;
+            }
+        }
+        
+        return res;
+    }
+
 }

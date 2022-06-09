@@ -3,7 +3,7 @@ Asuncion,Curitiba,800
 Asuncion,Porto_Alegre,700
 Buenos_Aires,Montevideo,200
 Buenos_Aires,Porto_Alegre,1250
-Curitiba, Montevideo,1400
+Curitiba,Montevideo,1400
 Florianopolis,Rio_de_Janeiro,700
 Florianopolis,San_Pablo,650
 Porto_Alegre,Montevideo,1000

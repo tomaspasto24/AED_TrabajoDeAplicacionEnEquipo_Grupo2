@@ -20,9 +20,11 @@ public class PruebaGrafo {
         
         
         TCaminos caminos = gd.todosLosCaminos("Asuncion", "Montevideo");
+        TCamino camino = caminos.caminoMenorCosto();
         System.out.println("-----");
         caminos.imprimirCaminosConsola();
         System.out.println("-----");
 
+        System.out.println("Camino de menor costo: " + camino.imprimirEtiquetas());
     }
 }

@@ -81,7 +81,10 @@ public class TCamino implements ICamino {
             builder.append(vertice);
         }
         
+        builder.append(": ");
+        builder.append(this.costoTotal);
+        
         return builder.toString();
     }
-
+    
 }
