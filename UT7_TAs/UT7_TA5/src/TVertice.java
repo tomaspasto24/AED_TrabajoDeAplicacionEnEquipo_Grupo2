@@ -114,7 +114,24 @@ public class TVertice<T> implements IVertice {
 
     @Override
     public TCaminos todosLosCaminos(Comparable etVertDest, TCamino caminoPrevio, TCaminos todosLosCaminos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setVisitado(true);
+        for (TAdyacencia adyacencia : this.getAdyacentes()) {
+            TVertice destino = adyacencia.getDestino();
+            if (!destino.getVisitado()) {
+                if (destino.getEtiqueta().compareTo(etVertDest) == 0) {
+                    TCamino copia = caminoPrevio.copiar();
+                    copia.agregarAdyacencia(adyacencia);
+                    todosLosCaminos.getCaminos().add(copia);
+                } else {
+                    caminoPrevio.agregarAdyacencia(adyacencia);
+                    destino.todosLosCaminos(etVertDest, caminoPrevio, todosLosCaminos);
+                    caminoPrevio.eliminarAdyacencia(adyacencia);
+                    //COMPLETAR LLAMADA RECURSIVA
+                }
+            }
+        }
+        this.setVisitado(false);
+        return todosLosCaminos;
     }
 
 }

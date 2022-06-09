@@ -11,9 +11,6 @@ public class TCamino implements ICamino {
 
     private final TVertice origen;
     private Collection<Comparable> otrosVertices;
-// es una lista de etiquetas de los vertices
-// ATENCIÓN: PONER LA CLASE CONCRETA QUE									     	     
-// SEA MÁS APROPIADA
     private Double costoTotal = 0.0d;
 
     public void imprimirEtiquetasConsola() {
@@ -76,7 +73,15 @@ public class TCamino implements ICamino {
 
     @Override
     public String imprimirEtiquetas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder builder = new StringBuilder();
+        builder.append(origen.getEtiqueta());
+        
+        for (Comparable vertice : otrosVertices) {
+            builder.append(", ");
+            builder.append(vertice);
+        }
+        
+        return builder.toString();
     }
 
 }

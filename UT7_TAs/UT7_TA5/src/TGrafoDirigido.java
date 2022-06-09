@@ -214,7 +214,15 @@ public class TGrafoDirigido implements IGrafoDirigido {
 
     @Override
     public TCaminos todosLosCaminos(Comparable etiquetaOrigen, Comparable etiquetaDestino) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TVertice origen = this.buscarVertice(etiquetaOrigen);
+        if (origen == null || this.buscarVertice(etiquetaDestino) == null) {
+            return null;
+        }
+        
+        TCaminos caminos = new TCaminos();
+        caminos = origen.todosLosCaminos(etiquetaDestino, new TCamino(origen), caminos);
+        
+        return caminos;
     }
     
     
