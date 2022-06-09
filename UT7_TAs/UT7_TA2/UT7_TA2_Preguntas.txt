@@ -1,0 +1,8 @@
+1)- Opcion A: Poder representar en un modelo TDA todos ls vuelos y conexiones de la aerolinea.
+2)- Opcion D: Es de o(n^3), lo cual es mucho pero en realidad se ha de ejecutar esporadicamente.
+3)- Opcion B: 560
+4)- Punta del Este
+5)- Opcion B: Se hace escala en Punta del Este
+6)- Opcion C: Es una version del algoritmo de Floyd que permite cononocer si existe conectividad entre vertices
+7)- Opcion C: La mayor de las longitudes minimas de los caminos entre cada uno de los otros nodos y v
+8)- Opcion D: Si, si se agrega un vector de n posiciones.

@@ -1,0 +1,5 @@
+UT7 TA2 
+Ejercicio1
+Orden de tiempo de ejecución = O(N^3)
+
+Se podría alivianar la carga del algoritmo tomando como caso de que A[i,k] sea infinito, se salta el último bucle.

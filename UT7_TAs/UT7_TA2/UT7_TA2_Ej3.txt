@@ -1,0 +1,44 @@
+Lenguaje Natural:
+Recorremos todos los pares de nodos del grafo, imprimiendo sus caminos de uno a otro.
+Para calcular un camino de un nodo a otro:
+	Hallamos el predecesor entre ambos nodos
+	Si es nulo, devolver una lista vacía
+	Si no, devolver la suma de:
+		El camino del inicio al predecesor
+		Una lista con el predecesor
+		El camino del predecesor al final
+
+Precondiciones:
+La matriz P sea correcta.
+Existe una estructura E que mapea números a nombres de vértices.
+
+Postcondiciones:
+La matriz P sigue intacta.
+
+Pseudocodigo:
+/*
+E es una estructura que mapea números a nombres de vértices.
+*/
+funcion caminos(): vacio
+com
+	para cada i en ancho de P hacer										O(N)
+		para cada j en altura de P hacer								O(N)
+			imprimir "Camino de " E[i] " a " E[j] ": " camino(i, j)		O(N)
+		fin para cada
+	fin para cada
+fin
+
+funcion camino(i, j: entero): lista
+com
+	k = P[i, j]								O(1)
+	si k == 0 entonces devolver []			O(1)
+	res = camino(i, k) + [k] + camino(k, j)	O(?)
+	devolver res							O(1)
+fin
+
+Orden de ejecución:
+Ignorando recursividad, el orden de ejecución del algoritmo "camino" es O(1).
+La recursividad se ejecuta tantas veces como predecesores haya en medio de los nodos extremos.
+Por lo tanto, el orden de ejecución del algoritmo "camino" es O(N), siendo N el número de nodos del grafo.
+
+El orden de ejecución del algoritmo "caminos" es O(N^3)
