@@ -1,0 +1,48 @@
+Lenguaje natural:
+Se realiza una búsqueda de profundidad sobre el grafo.
+Si uno de los adyacentes a un grafo ya pertenece al camino, entonces hay un arco de retroceso. Entonces, se devuelve verdadero.
+Si no se encuentra, se devuelve falso.
+
+Precondiciones:
+El camino está creado y vacío.
+
+Postcondiciones:
+El camino contendrá todas las etiquetas del ciclo.
+
+Pseudocódigo:
+Función TGrafoDirigido.tieneCiclo(): boolean
+COM
+	Para cada vertice del grafo hacer
+		camino = new TCamino(vertice)		O(1)
+		Si vertice.tieneCiclo(camino) entonces	?
+			imprimir(camino)		O(n)
+			Devolver verdadero		O(1)
+		Fin si
+	Fin para cada
+	Devolver falso					O(1)
+FIN
+
+Función TVertice.tieneCiclo(camino: TCamino): boolean
+COM
+	visitar()						O(1)
+	Para cada adyacente w del vertice hacer			O(a)
+		Si w no está visitado entonces			O(1)
+			camino.insertar(this)			O(1)
+			res = w.tieneCiclo(camino)		?
+			Si res es verdadero entonces		O(1)
+				Devolver verdadero		O(1)
+			Sino
+				camino.eliminar(this)		O(1)
+			Fin si
+		Sino
+			Si w se encuentra en el camino entonces	O(n)
+				Devolver verdadero		O(1)
+			Fin si
+		Fin si
+	Fin para cada
+	Devolver falso						O(1)
+FIN
+
+Orden de ejecución:
+Ignorando la recursividad, el orden de ejecución del algoritmo es O(n), siendo n el número de vértices del grafo.
+La recursividad se ejecuta tantas veces como nodos tenga el grafo
