@@ -1,0 +1,49 @@
+Lenguaje natural Prim dado un vértice inicial:
+	Se inicializa un vector de booleanos que representa U, en el cual todos los valores son FALSO excepto por el del vértice inicial, que representa VERDADERO.
+	Se halla la lista de aristas del grafo, ordenadas por costo.
+	Se inicializa una lista de aristas vacía que se devuelve.
+	Se inicializa un contador a la cantidad de vértices del grafo menos 1.
+	Mientras el contador sea mayor a 0:
+		Se recorre la lista ordenada de aristas del grafo:
+			Si en alguna, un vértice está en U y la otra no, se detiene el recorrido y se guarda dicha arista.
+		Se agrega la arista en la lista de aristas resultado.
+		Se agrega el vértice que no está en U, en U.
+		Se resta 1 al contador.
+	Se devuelve la lista de aristas.
+
+Precondiciones:
+	El grafo es conexo
+	El grafo está bien formado
+	El grafo tiene una lista de sus aristas ordenadas por costo de menor a mayor
+	El conjunto de aristas del grafo contiene la arista (v, u) para toda arista (u, v) en el grafo
+
+Postcondiciones:
+	El grafo se mantiene intacto
+
+Pseudocódigo:
+FUNCIÓN TGrafoNoDirigido.Prim(vertice: TVertice): List<TArista>
+COM
+	U = new LinkedList<TVertice>()
+	U.agregar(vertice)
+	
+	res = new LinkedList<TArista>()
+	aristas = this.aristas
+	
+	Mientras V.length != U.length hacer
+		nuevaArista = this.aristas.obtenerMinimo(U)
+		res.agregar(nuevaArista)
+		U.agregar(nuevaArista.v2)
+	Fin mientras
+
+	Devolver aristas
+FIN
+
+FUNCIÓN TAristas.obtenerMinimo(U: Collection<TVertice>): TArista
+COM
+	Para cada arista en this.aristas:
+		Si U.contiene(arista.v1) Y !U.contiene(arista.v2) entonces
+			Devolver arista
+		Fin si
+	Fin para cada
+	Devolver null
+FIN
