@@ -264,5 +264,10 @@ public class TGrafoDirigidoTest {
         resultado.imprimirCaminosConsola();
         System.out.println();
     }
+    
+    @Test
+    public void testTieneCiclo() {
+        
+    }
 
 }

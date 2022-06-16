@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.194" tests="17" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.128" tests="18" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="18"/>
+    <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\santi\Files\projects\UCU\1-2022\UT8_PD1\target\test-classes;C:\Users\santi\Files\projects\UCU\1-2022\UT8_PD1\target\classes;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\santi\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\santi\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\santi\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\santi\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;"/>
+    <property name="java.class.path" value="C:\Users\santi\Files\UCU\AED_TrabajoDeAplicacionEnEquipo_Grupo2\UT8_TAs\UT8_PD1\target\test-classes;C:\Users\santi\Files\UCU\AED_TrabajoDeAplicacionEnEquipo_Grupo2\UT8_TAs\UT8_PD1\target\classes;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\santi\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\santi\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\santi\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\santi\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="America/Montevideo"/>
+    <property name="user.country.format" value="US"/>
     <property name="os.name" value="Windows 10"/>
-    <property name="java.vm.specification.version" value="18"/>
-    <property name="user.country" value="US"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="user.country" value="MX"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-18\bin"/>
-    <property name="sun.java.command" value="C:\Users\santi\AppData\Local\Temp\surefire15656397631616584320\surefirebooter12305566392995906746.jar C:\Users\santi\AppData\Local\Temp\surefire15656397631616584320 2022-06-15T12-14-55_105-jvmRun1 surefire3450571857933010570tmp surefire_07954780295913691182tmp"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\jdk-17.0.2\bin"/>
+    <property name="sun.java.command" value="C:\Users\santi\AppData\Local\Temp\surefire5591655625433520205\surefirebooter13455685459155161465.jar C:\Users\santi\AppData\Local\Temp\surefire5591655625433520205 2022-06-16T08-56-59_546-jvmRun1 surefire16261552322489958056tmp surefire_04568472948535683709tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\santi\Files\projects\UCU\1-2022\UT8_PD1\target\test-classes;C:\Users\santi\Files\projects\UCU\1-2022\UT8_PD1\target\classes;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\santi\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\santi\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\santi\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\santi\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\santi\Files\UCU\AED_TrabajoDeAplicacionEnEquipo_Grupo2\UT8_TAs\UT8_PD1\target\test-classes;C:\Users\santi\Files\UCU\AED_TrabajoDeAplicacionEnEquipo_Grupo2\UT8_TAs\UT8_PD1\target\classes;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\santi\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\santi\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\santi\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\santi\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\santi\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\santi"/>
-    <property name="user.language" value="en"/>
+    <property name="user.language" value="es"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2022-03-22"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk-18"/>
+    <property name="java.version.date" value="2022-01-18"/>
+    <property name="java.home" value="C:\Program Files\jdk-17.0.2"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\santi\Files\projects\UCU\1-2022\UT8_PD1"/>
-    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="basedir" value="C:\Users\santi\Files\UCU\AED_TrabajoDeAplicacionEnEquipo_Grupo2\UT8_TAs\UT8_PD1"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\santi\AppData\Local\Temp\surefire15656397631616584320\surefirebooter12305566392995906746.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\santi\AppData\Local\Temp\surefire5591655625433520205\surefirebooter13455685459155161465.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="18+36-2087"/>
+    <property name="java.runtime.version" value="17.0.2+8-86"/>
     <property name="user.name" value="santi"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
@@ -44,34 +45,36 @@
     <property name="localRepository" value="C:\Users\santi\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\santi\AppData\Local\Temp\"/>
-    <property name="java.version" value="18"/>
-    <property name="user.dir" value="C:\Users\santi\Files\projects\UCU\1-2022\UT8_PD1"/>
+    <property name="java.version" value="17.0.2"/>
+    <property name="user.dir" value="C:\Users\santi\Files\UCU\AED_TrabajoDeAplicacionEnEquipo_Grupo2\UT8_TAs\UT8_PD1"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.language.format" value="en"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-18\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\VMware\VMware Player\bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;c:\Program Files\Intel\WiFi\bin\;c:\Program Files\Common Files\Intel\WirelessCommon\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Gpg4win\..\GnuPG\bin;C:\Program Files\dotnet\;C:\Users\santi\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\santi\AppData\Local\Programs\Python\Python310\;C:\Users\santi\.cargo\bin;C:\Users\santi\AppData\Local\Microsoft\WindowsApps;;C:\Users\santi\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\santi\.dotnet\tools;."/>
+    <property name="java.library.path" value="C:\Program Files\jdk-17.0.2\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C;C:\Users\santi\.cargo\bin;C:\Users\santi\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\santi\AppData\Local\Programs\Python\Python39\;C:\Users\santi\AppData\Local\Microsoft\WindowsApps;C:\Users\santi\.dotnet\tools;C:\Users\santi\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\doxygen\bin;C:\Users\santi\Dropbox\Desktop\Projects\cmd;C:\Program Files (x86)\Vim\vim82;;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="18+36-2087"/>
+    <property name="java.vm.version" value="17.0.2+8-86"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="62.0"/>
+    <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testGetEtiquetasOrdenado" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.047"/>
+  <testcase name="testGetEtiquetasOrdenado" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.034"/>
   <testcase name="testObtenerExcentricidad" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.003"/>
-  <testcase name="testExisteVertice" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.005"/>
-  <testcase name="testFloyd" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.002"/>
+  <testcase name="testExisteVertice" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.004"/>
+  <testcase name="testFloyd" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.004"/>
+  <testcase name="testTieneCiclo" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.001"/>
   <testcase name="testEliminarVertice" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.002"/>
   <testcase name="testGetVertices" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.002"/>
   <testcase name="testInsertarVertice_TVertice" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.001"/>
-  <testcase name="testInsertarVertice_Comparable" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.005"/>
-  <testcase name="testTodosLosCaminos" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.005"/>
-  <testcase name="testBpf_0args" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0"/>
-  <testcase name="testBpf_Comparable" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0"/>
-  <testcase name="testCentroDelGrafo" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0"/>
+  <testcase name="testInsertarVertice_Comparable" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.001"/>
+  <testcase name="testTodosLosCaminos" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.008"/>
+  <testcase name="testBpf_0args" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.001"/>
+  <testcase name="testBpf_Comparable" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.001"/>
+  <testcase name="testCentroDelGrafo" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.001"/>
   <testcase name="testExisteArista" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.001"/>
-  <testcase name="testEliminarArista" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.002"/>
-  <testcase name="testWarshall" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.004"/>
-  <testcase name="testClasificacionTopologica" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.003"/>
+  <testcase name="testEliminarArista" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.001"/>
+  <testcase name="testWarshall" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.002"/>
+  <testcase name="testClasificacionTopologica" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.001"/>
   <testcase name="testInsertarArista" classname="ut8.ut8_pd1.TGrafoDirigidoTest" time="0.001"/>
 </testsuite>
