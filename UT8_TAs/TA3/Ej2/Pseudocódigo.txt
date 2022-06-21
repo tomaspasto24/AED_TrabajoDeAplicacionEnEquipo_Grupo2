@@ -1,0 +1,57 @@
+Lenguaje natural:
+Se recorren todos los vértices del árbol
+Si el vértice no está visitado:
+	Visitarlo
+	Añadirlo a la cola
+	Mientras la cola no esté vacía:
+		Extraer el primer vértice de la cola
+		Procesarlo
+		Para cada adyacente suyo, si no está visitado, visitarlo y añadirlo a la cola
+Desvisitar todos los vértices
+
+Precondiciones (TGrafoNoDirigido):
+	Todos los vértices no están visitados
+
+Postcondiciones (TGrafoNoDirigido):
+	El grafo se mantiene intacto
+	Se procesan todos los vértices del mismo
+
+Pseudocódigo (TGrafoNoDirigido):
+FUNCIÓN TGrafoNoDirigido.bea(): String
+COM
+	builder = new StringBuilder()
+	Para cada vértice en vértices
+		Si !vértice.estaVisitado() entonces
+			builder.append(vértice.bea())
+		Fin si
+	Fin para cada
+	limpiarVisitados()
+	Devolver builder.toString()
+FIN
+
+
+Precondiciones (TVertice):
+	El vértice invocado no está visitado
+
+Postcondiciones (TVertice):
+	Los vértices visitados quedan marcados como visitados
+
+Pseudocódigo (TVertice):
+FUNCIÓN TVertice.bea(): String
+COM
+	visitar()
+	res = ""
+	cola = new Queue()
+	cola.insertar(this)
+	Mientras la cola no está vacía
+		x = cola.remover()
+		Para cada adyacente y de x
+			Si !y.estaVisitado() entonces
+				y.visitar()
+				res += y.getEtiqueta()
+				cola.insertar(y)
+			Fin si
+		Fin para cada
+	Fin mientras
+	Devolver res
+FIN
