@@ -9,7 +9,7 @@ public class TAristas extends LinkedList<TArista> {
 
     private final static String SEPARADOR_ELEMENTOS_IMPRESOS = "-";
     //private Collection<TArista> aristas  = new LinkedList<TArista>();
-
+    
     /**
      * Busca dentro de la lista de aristas una arista que conecte a etOrigen con
      * etDestino
