@@ -378,4 +378,20 @@ public class TGrafoDirigido implements IGrafoDirigido {
         
         return res;
     }
+    
+    public TCamino tieneCiclo(Comparable origenEti) {
+        TVertice origen = this.buscarVertice(origenEti);
+        if (origen == null) {
+            return null;
+        }
+        
+        TCamino res = new TCamino(origen);
+        boolean tieneCiclo = origen.tieneCiclo(res);
+        
+        if (tieneCiclo) {
+            return res;
+        } else {
+            return null;
+        }
+    }
 }

@@ -89,6 +89,10 @@ public class TVertice<T> implements IVertice {
     public T getDatos() {
         return datos;
     }
+    
+    public void setDatos(T datos) {
+        this.datos = datos;
+    }
 
     @Override
     public void bpf(Collection<TVertice> visitados) {

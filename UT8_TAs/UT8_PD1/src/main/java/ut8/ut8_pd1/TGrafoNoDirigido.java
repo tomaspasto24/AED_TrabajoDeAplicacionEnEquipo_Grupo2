@@ -18,20 +18,38 @@ import java.util.TreeMap;
  */
 public class TGrafoNoDirigido extends TGrafoDirigido {
 
+    private TAristas aristas = null;
+
     public TGrafoNoDirigido(Collection<TVertice> vertices, Collection<TArista> aristas) {
         super(vertices, aristas);
     }
 
     @Override
     public boolean eliminarArista(Comparable nomVerticeOrigen, Comparable nomVerticeDestino) {
-        return super.eliminarArista(nomVerticeOrigen, nomVerticeDestino) && super.eliminarArista(nomVerticeDestino, nomVerticeOrigen);
+        if (!super.eliminarArista(nomVerticeOrigen, nomVerticeDestino)) {
+            return false;
+        }
+
+        this.aristas.removeIf(a
+                -> (a.etiquetaOrigen.compareTo(nomVerticeOrigen) == 0
+                && a.etiquetaDestino.compareTo(nomVerticeDestino) == 0)
+                || (a.etiquetaOrigen.compareTo(nomVerticeDestino) == 0
+                && a.etiquetaDestino.compareTo(nomVerticeOrigen) == 0)
+        );
+
+        return super.eliminarArista(nomVerticeDestino, nomVerticeOrigen);
     }
 
     @Override
     public boolean insertarArista(TArista arista) {
+        if (this.aristas == null) {
+            this.aristas = new TAristas();
+        }
+        
         if (!super.insertarArista(arista)) {
             return false;
         }
+        this.aristas.add(arista);
         TArista opuesto = new TArista(arista.etiquetaDestino, arista.etiquetaOrigen, arista.costo);
         return super.insertarArista(opuesto);
     }
@@ -65,35 +83,35 @@ public class TGrafoNoDirigido extends TGrafoDirigido {
 
         return new TGrafoNoDirigido(this.getVertices().values(), this.primAristas(inicio));
     }
-    
+
     private static Comparable raizDe(Comparable inicio, Map<Comparable, Comparable> componentes) {
         if (inicio == null) {
             return null;
         }
-        
+
         Comparable aux = componentes.get(inicio);
         while (aux != null && !inicio.equals(aux)) {
             inicio = aux;
             aux = componentes.get(inicio);
         }
-        
+
         return inicio;
     }
-    
+
     private static void optimizarRaiz(Comparable inicio, Map<Comparable, Comparable> componentes) {
         if (inicio == null) {
             return;
         }
-        
+
         LinkedList<Comparable> vertices = new LinkedList<>();
-        
+
         Comparable aux = componentes.get(inicio);
         while (aux != null && !inicio.equals(aux)) {
             vertices.add(inicio);
             inicio = aux;
             aux = componentes.get(inicio);
         }
-        
+
         for (Comparable vertice : vertices) {
             componentes.put(vertice, inicio);
         }
@@ -107,14 +125,14 @@ public class TGrafoNoDirigido extends TGrafoDirigido {
         for (Comparable vertice : this.getVertices().keySet()) {
             componentes.put(vertice, vertice);
         }
-        
+
         TAristas aristas = this.getAristas();
         aristas.sort((a1, a2) -> Double.compare(a1.costo, a2.costo));
-        
+
         TAristas res = new TAristas();
-        
+
         int contador = numVertices - 1;
-        
+
         Iterator<TArista> iter = aristas.iterator();
         while (contador > 0 && iter.hasNext()) {
             TArista arista = iter.next();
@@ -126,11 +144,11 @@ public class TGrafoNoDirigido extends TGrafoDirigido {
                 contador--;
             }
         }
-        
+
         if (contador > 0) {
             return null;
         }
-        
+
         return new TGrafoNoDirigido(this.getVertices().values(), res);
     }
 
@@ -151,26 +169,26 @@ public class TGrafoNoDirigido extends TGrafoDirigido {
 
         return res;
     }
-    
+
     @Override
     public TAristas getAristas() {
         TAristas res = new TAristas();
-        
+
         List<Comparable> verticesVisitados = new LinkedList<>();
         for (Map.Entry<Comparable, TVertice> entrada : this.getVertices().entrySet()) {
             Comparable origenEti = entrada.getKey();
             TVertice origen = entrada.getValue();
-            
+
             for (Object ob : origen.getAdyacentes()) {
                 TAdyacencia ady = (TAdyacencia) ob;
                 if (!verticesVisitados.contains(ady.getEtiqueta())) {
                     res.add(new TArista(origenEti, ady.getEtiqueta(), ady.getCosto()));
                 }
             }
-            
+
             verticesVisitados.add(origenEti);
         }
-        
+
         return res;
     }
 
