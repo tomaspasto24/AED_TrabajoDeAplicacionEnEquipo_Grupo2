@@ -1,0 +1,12 @@
+Para reperesentar la estructura del grafo no dirigido utilizaremos un Lista de todos los vertices y un ListaOrdenada de todas
+las aristas.
+Para resolver este problema práctico, se utiliza el algoritmo de Prim, que devuelve un grafo dirigido (árbol abarcador). 
+
+Lenguaje natural Prim:
+	Prim va a recibir el nodo inicial
+	Se inicializa un conjunto de aristas que estarán en el árbol abarcador de costo mínimo al final
+	Se inicializa un conjunto de vértices, y se le añade el nodo inicial especificado
+	Mientras el conjunto de vértices sea distinto al conjunto de vértices del grafo, se hace lo siguiente:
+		Se elige la arista de costo mínimo entre todas las que conecten un vértice de U y otro de V-U
+		Se añade la arista al conjunto de aristas, y el vértice a U
+	Se devuelve el conjunto de aristas

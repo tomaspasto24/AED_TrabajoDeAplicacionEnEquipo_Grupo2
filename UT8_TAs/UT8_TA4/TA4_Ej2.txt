@@ -1,0 +1,45 @@
+Lenguaje Natural:
+	 
+Precondiciones:
+	El grafo tiene al menos 1 vertice
+Postcondiciones:
+	El grafo no varia (Aplicamos un limpiar)
+	
+Pseudocodigo:
+
+Funcion TGrafoNoDirigido.PuntoArticulacion(Comparable origen):ListList<TVeritice>
+COMIENZO
+	TVertice v = buscarVertice(origen)
+	int [] guardoBP = new int[1]
+	LinkedList lista = new LinkedList()
+	v.bpfConBajo(guardoBP, lista)
+	return lista
+FIN 
+
+
+Funcion void TVertice.bpfConBajo(int[] guardoBP, LinkedList puntosArticulacion)
+COMIENZO
+	
+        this.visitado = true
+	LinkedList hijos = new LinkedList()        
+	guardoBP[0] += 1
+	this.bp = guardoBP[0]
+        PARA CADA (TAdyacencia ady : this.adyacentes) HACER
+            TVertice v = ady.getDestino()
+            SI (!v.getVisitado()) ENTONCES
+		v.bpfConBajo(guardoBP,puntosArticulacion)
+		SI this.bajo > v.getBajo() ENTONCES
+			this.bajo = v.getBajo()
+		FIN SI 
+		hijos.add(v)
+            FIN SI
+	    Si this.bajo > v.getBP() ENTONCES
+	    	this.bajo = v.getBP()
+	    FIN SI 
+        FIN PARA CADA
+	PARA CADA (TVertice w : hijos) HACER
+		SI w.getBajo() >= this.getBP()
+			puntosArticulacion.add(this) 
+	FIN PARA CADA	    			
+FIN
+		
