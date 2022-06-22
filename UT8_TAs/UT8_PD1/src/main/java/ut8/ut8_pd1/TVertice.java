@@ -150,4 +150,24 @@ public class TVertice<T> implements IVertice {
         return todosLosCaminos;
     }
 
+    public boolean tieneCiclo(TCamino camino) {
+        this.setVisitado(true);
+        for (TAdyacencia ady : this.getAdyacentes()) {
+            TVertice adyacente = ady.getDestino();
+            if (!adyacente.getVisitado()) {
+                camino.agregarAdyacencia(ady);
+                if (adyacente.tieneCiclo(camino)) {
+                    return true;
+                }
+                camino.eliminarAdyacencia(ady);
+            } else if (
+                    adyacente == camino.getOrigen() ||
+                    camino.getOtrosVertices().contains(adyacente.getEtiqueta())) {
+                camino.agregarAdyacencia(ady);
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

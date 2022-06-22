@@ -4,6 +4,18 @@
     <groupId>com.mycompany.ut7_ta6_ej2</groupId>
     <artifactId>UT7_TA6_Ej2</artifactId>
     <version>1.0-SNAPSHOT</version>
+<<<<<<< HEAD
+=======
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+            </plugin>
+        </plugins>
+    </build>
+>>>>>>> santiagodeolivera
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

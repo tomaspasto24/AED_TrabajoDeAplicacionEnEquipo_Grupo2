@@ -17,7 +17,8 @@ public class Tupla<T, U> {
     
     @Override
     public boolean equals(Object other) {
-        if (other instanceof Tupla tupla) {
+        if (other instanceof Tupla) {
+            Tupla tupla = (Tupla) other;
             return this.primero.equals(tupla.primero) && this.segundo.equals(tupla.segundo);
         }
         return false;
