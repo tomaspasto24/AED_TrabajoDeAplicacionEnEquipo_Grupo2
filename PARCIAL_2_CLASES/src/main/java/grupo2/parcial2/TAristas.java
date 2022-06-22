@@ -1,6 +1,5 @@
 package grupo2.parcial2;
 
-
 import java.util.Collection;
 
 import java.util.LinkedList;
@@ -9,7 +8,7 @@ public class TAristas extends LinkedList<TArista> {
 
     private final static String SEPARADOR_ELEMENTOS_IMPRESOS = "-";
     //private Collection<TArista> aristas  = new LinkedList<TArista>();
-    
+
     /**
      * Busca dentro de la lista de aristas una arista que conecte a etOrigen con
      * etDestino
@@ -19,7 +18,12 @@ public class TAristas extends LinkedList<TArista> {
      * @return
      */
     public TArista buscar(Comparable etOrigen, Comparable etDestino) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (TArista a : this) {
+            if (a.etiquetaDestino.compareTo(etDestino) == 0 && a.etiquetaOrigen.compareTo(etOrigen) == 0) {
+                return a;
+            }
+        }
+        return null;
     }
 
     /**
@@ -31,31 +35,38 @@ public class TAristas extends LinkedList<TArista> {
      * @return
      */
     public TArista buscarMin(Collection<Comparable> VerticesU, Collection<Comparable> VerticesV) {
-       
-        //---------COMPLETAR ALGORITMO--------
-        // para todo u en Vertices U
-        // para todo v en Vertices V
-        // tA =buscar (u, v)
-        // si tA <> null y tA.costo < costoMin entonces
-        // tAMin = tA y costoMin = tA.costo
-        // fin para todo v
-        // fin para todo u
-        // devolver tAMin
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TArista minimo = null;
+        for (TArista a : this) {
+            if (VerticesV.contains(a.etiquetaDestino)
+                    && VerticesU.contains(a.etiquetaOrigen)
+                    && (minimo == null || minimo.costo > a.costo)) {
+                minimo = a;
+            }
+        }
+        return minimo;
     }
 
+    //ORIGEN - DESTINO - COSTO
     public String imprimirEtiquetas() {
         if (this.isEmpty()) {
             return null;
         }
         StringBuilder salida = new StringBuilder();
-        //TODO: Completar codigo que imprime todas las aristas de la lista en el siguiente formato:
-        //ORIGEN - DESTINO - COSTO
+        for (TArista a : this) {
+            salida.append(a.etiquetaOrigen);
+            salida.append(SEPARADOR_ELEMENTOS_IMPRESOS);
+            salida.append(a.etiquetaDestino);
+            salida.append(SEPARADOR_ELEMENTOS_IMPRESOS);
+            salida.append(a.costo);
+            salida.append("\n");
+        }
         return salida.toString();
     }
 
     void insertarAmbosSentidos(Collection<TArista> aristas) {
-        if (aristas == null) return;
+        if (aristas == null) {
+            return;
+        }
         TArista tempArista;
         for (TArista ta : aristas) {
             this.add(ta);
@@ -63,4 +74,14 @@ public class TAristas extends LinkedList<TArista> {
         }
     }
 
+    public void insertarOrdenadoPorCosto(TArista arista) {
+        int indice = 0;
+        for (TArista a : this) {
+            if (a.costo > arista.costo) {
+                this.add(indice, arista);
+                break;
+            }
+            indice++;
+        }
+    }
 }

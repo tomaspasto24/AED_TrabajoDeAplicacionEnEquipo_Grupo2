@@ -352,7 +352,6 @@ public class TGrafoDirigido implements IGrafoDirigido {
         if (limpiar) {
             this.limpiarVisitados();
         }
-        
         return resultado;
     }
     
