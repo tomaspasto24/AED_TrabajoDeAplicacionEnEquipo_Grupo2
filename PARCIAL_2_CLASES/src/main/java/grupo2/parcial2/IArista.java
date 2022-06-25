@@ -1,4 +1,4 @@
-package grupo2.parcial2;
+package com.mycompany.ut8_pd2;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,7 +10,7 @@ package grupo2.parcial2;
  *
  * @author Ernesto
  */
-public interface IArista {
+public interface IArista extends Comparable<IArista>{
 
     double getCosto();
 

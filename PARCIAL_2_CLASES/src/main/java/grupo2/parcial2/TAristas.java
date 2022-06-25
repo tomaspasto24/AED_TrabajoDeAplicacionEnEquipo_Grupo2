@@ -1,6 +1,8 @@
-package grupo2.parcial2;
+package com.mycompany.ut8_pd2;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 
 import java.util.LinkedList;
 
@@ -37,8 +39,11 @@ public class TAristas extends LinkedList<TArista> {
     public TArista buscarMin(Collection<Comparable> VerticesU, Collection<Comparable> VerticesV) {
         TArista minimo = null;
         for (TArista a : this) {
-            if (VerticesV.contains(a.etiquetaDestino)
-                    && VerticesU.contains(a.etiquetaOrigen)
+            Comparable destino = a.etiquetaDestino;
+            Comparable origen = a.etiquetaOrigen;
+            Comparable costo = a.costo;
+            
+            if (VerticesV.contains(a.etiquetaDestino) && VerticesU.contains(a.etiquetaOrigen)
                     && (minimo == null || minimo.costo > a.costo)) {
                 minimo = a;
             }
@@ -72,16 +77,11 @@ public class TAristas extends LinkedList<TArista> {
             this.add(ta);
             this.add(ta.aristaInversa());
         }
+        Collections.sort(this);        
     }
 
-    public void insertarOrdenadoPorCosto(TArista arista) {
-        int indice = 0;
-        for (TArista a : this) {
-            if (a.costo > arista.costo) {
-                this.add(indice, arista);
-                break;
-            }
-            indice++;
-        }
+    public void insertar(TArista arista) {
+        this.add(arista);
+        Collections.sort(this);        
     }
 }

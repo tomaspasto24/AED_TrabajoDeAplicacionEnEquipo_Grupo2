@@ -1,4 +1,4 @@
-package grupo2.parcial2;
+package com.mycompany.ut8_pd2;
 
 public class TArista implements IArista {
 
@@ -58,5 +58,16 @@ public class TArista implements IArista {
         builder.append(this.costo);
         
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(IArista o) {
+        if(this.getCosto() > o.getCosto()) {
+            return 1;
+        } else if (this.getCosto() == o.getCosto()) {
+            return 0;
+        } else {
+            return -1;
+        }
     }
 }

@@ -1,11 +1,10 @@
-package grupo2.parcial2;
+package com.mycompany.ut8_pd2;
 
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Map;
-import java.util.HashMap;
 
 public class TVertice<T> implements IVertice {
 

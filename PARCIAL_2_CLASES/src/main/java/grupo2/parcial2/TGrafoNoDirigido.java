@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package grupo2.parcial2;
+package com.mycompany.ut8_pd2;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,14 +10,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Queue;
-import java.util.TreeMap;
 
-/**
- *
- * @author santi
- */
 public class TGrafoNoDirigido extends TGrafoDirigido {
 
     private TAristas aristas;
@@ -25,9 +19,12 @@ public class TGrafoNoDirigido extends TGrafoDirigido {
     public TGrafoNoDirigido(Collection<TVertice> vertices, Collection<TArista> aristas) {
         super(vertices, aristas);
         this.aristas = new TAristas();
+        int cont = 0;
         for (TArista a : aristas) {
-            this.aristas.insertarOrdenadoPorCosto(a);
+            cont++;
+            this.aristas.insertar(a);
         }
+//        this.aristas.insertarAmbosSentidos(aristas);
     }
 
     @Override
@@ -74,45 +71,12 @@ public class TGrafoNoDirigido extends TGrafoDirigido {
         return new TGrafoNoDirigido(this.getVertices().values(), this.primAristas(inicio));
     }
 
-    private static Comparable raizDe(Comparable inicio, Map<Comparable, Comparable> componentes) {
-        if (inicio == null) {
-            return null;
-        }
-
-        Comparable aux = componentes.get(inicio);
-        while (aux != null && !inicio.equals(aux)) {
-            inicio = aux;
-            aux = componentes.get(inicio);
-        }
-
-        return inicio;
-    }
-
-    private static void optimizarRaiz(Comparable inicio, Map<Comparable, Comparable> componentes) {
-        if (inicio == null) {
-            return;
-        }
-
-        LinkedList<Comparable> vertices = new LinkedList<>();
-
-        Comparable aux = componentes.get(inicio);
-        while (aux != null && !inicio.equals(aux)) {
-            vertices.add(inicio);
-            inicio = aux;
-            aux = componentes.get(inicio);
-        }
-
-        for (Comparable vertice : vertices) {
-            componentes.put(vertice, inicio);
-        }
-    }
-
     // Los componentes están definidos por su raíz, la cual se representa por un par clave-valor donde la clave y el valor son iguales.
     // Si una etiqueta no apunta a sí misma en el mapa, entonces pertenece al mismo componente que la etiqueta a la cual sí apunta.
     public TGrafoNoDirigido kruskal() {
         TAristas F = new TAristas();
         int numVertices = this.getVertices().size();
-        Map<Comparable, Integer> componentes = new HashMap<>(numVertices * 4 / 3);
+        Map<Comparable, Integer> componentes = new HashMap<>();
         int i = 0;
         for (Comparable vertice : this.getVertices().keySet()) {
             componentes.put(vertice, i);
