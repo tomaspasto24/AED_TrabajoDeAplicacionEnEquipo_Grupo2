@@ -1,4 +1,4 @@
-package com.mycompany.ut8_pd2;
+package grupo2.parcial2;
 
 
 public class TAdyacencia implements IAdyacencia {

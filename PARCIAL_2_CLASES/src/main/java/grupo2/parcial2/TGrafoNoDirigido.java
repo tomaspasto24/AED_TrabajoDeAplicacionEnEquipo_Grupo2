@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.ut8_pd2;
+package grupo2.parcial2;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -56,8 +56,14 @@ public class TGrafoNoDirigido extends TGrafoDirigido {
         while (!V.isEmpty()) {
             TArista nuevaArista = this.aristas.buscarMin(U, V);
             res.add(nuevaArista);
-            U.add(nuevaArista.getEtiquetaDestino());
-            V.remove(nuevaArista.getEtiquetaDestino());
+            Comparable etiDestino = nuevaArista.getEtiquetaDestino();
+            if (U.contains(etiDestino)) {
+                U.add(nuevaArista.getEtiquetaOrigen());
+                V.remove(nuevaArista.getEtiquetaOrigen());
+            } else {
+                U.add(etiDestino);
+                V.remove(etiDestino);
+            }
         }
 
         return res;

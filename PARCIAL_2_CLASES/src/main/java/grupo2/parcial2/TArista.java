@@ -1,6 +1,6 @@
-package com.mycompany.ut8_pd2;
+package grupo2.parcial2;
 
-public class TArista implements IArista {
+public class TArista implements IArista, Comparable<TArista> {
 
     protected Comparable etiquetaOrigen;
     protected Comparable etiquetaDestino;
@@ -61,7 +61,7 @@ public class TArista implements IArista {
     }
 
     @Override
-    public int compareTo(IArista o) {
+    public int compareTo(TArista o) {
         if(this.getCosto() > o.getCosto()) {
             return 1;
         } else if (this.getCosto() == o.getCosto()) {

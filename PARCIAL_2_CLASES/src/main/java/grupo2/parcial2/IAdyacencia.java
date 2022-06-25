@@ -1,4 +1,4 @@
-package com.mycompany.ut8_pd2;
+package grupo2.parcial2;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

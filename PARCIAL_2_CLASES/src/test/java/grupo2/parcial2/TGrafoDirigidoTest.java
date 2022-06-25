@@ -4,11 +4,6 @@
  */
 package grupo2.parcial2;
 
-import grupo2.parcial2.TCaminos;
-import grupo2.parcial2.TArista;
-import grupo2.parcial2.TGrafoDirigido;
-import grupo2.parcial2.TVertice;
-import grupo2.parcial2.Tupla;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
