@@ -1,0 +1,8 @@
+Responder Preguntas:
+1)- Se llama al metodo generarDatosAscendentes() de la clase GeneradorDatosGenericos
+2)- Se llama al metodo generarDatosDescendientes() de la clase GeneradorDatosGenericos
+3)- Se llama al metodo generarDatosAleatorios() de la clase GeneradorDatosGenericos.
+ 	El dato no puede estar duplicado pero la clave si.
+	El tiempo de ejecucuion es O(n^2).
+4)- 32000
+5)-
