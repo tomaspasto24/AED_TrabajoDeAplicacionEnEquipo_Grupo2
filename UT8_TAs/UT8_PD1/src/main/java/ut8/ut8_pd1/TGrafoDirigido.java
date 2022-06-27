@@ -1,4 +1,4 @@
-package ut8.ut8_pd1;
+package grupo2.parcial2;
 
 
 import java.util.Collection;
@@ -166,6 +166,58 @@ public class TGrafoDirigido implements IGrafoDirigido {
         return res;
     }
 
+    public void dijkstra(Double[]D, Comparable[]P, Comparable origen)
+    {
+        Double [][] C = UtilGrafos.obtenerMatrizCostos(this.vertices);
+        LinkedList<Integer> VS = new LinkedList<>();                //Almaceno los indices de cada vertice
+        int contador = 0;
+        for(Comparable v : this.vertices.keySet())
+        {
+            if(v.compareTo(origen) == 0)
+            {
+                break;
+            }
+            else
+            {
+                contador++;
+            }
+        }
+        for(int i  = 0; i < C.length; i++)
+        {
+            if (i != contador)
+            {
+                VS.add(i);
+            }
+        }
+        for(int i = 0; i <C.length; i++){
+            D[i] = C[contador][i];
+        }
+        
+        while(!VS.isEmpty())
+        {
+            int w = -1;
+            for(Integer v : VS)
+            {
+                if(w == -1 || D[v] < D[w])
+                {
+                    w = v;
+                }
+            }
+            VS.remove((Integer)w);
+            for(Integer v : VS)
+            {
+                if(D[w]+C[w][v] < D[v])
+                {
+                    D[v] = D[w]+C[w][v];
+                    P[v] = w;
+                }
+            }
+        }
+       
+    }
+    
+    
+    
     @Override
     public Double[][] floyd() {
         Double[][] matriz = UtilGrafos.obtenerMatrizCostos(vertices);
@@ -213,7 +265,7 @@ public class TGrafoDirigido implements IGrafoDirigido {
     }
     
     @Override
-    public Comparable obtenerExcentricidad(Comparable etiquetaVertice) {
+    public Double obtenerExcentricidad(Comparable etiquetaVertice) {
         return this.obtenerExcentricidades().get(etiquetaVertice);
     }
 
@@ -300,7 +352,6 @@ public class TGrafoDirigido implements IGrafoDirigido {
         if (limpiar) {
             this.limpiarVisitados();
         }
-        
         return resultado;
     }
     
@@ -377,21 +428,5 @@ public class TGrafoDirigido implements IGrafoDirigido {
         }
         
         return res;
-    }
-    
-    public TCamino tieneCiclo(Comparable origenEti) {
-        TVertice origen = this.buscarVertice(origenEti);
-        if (origen == null) {
-            return null;
-        }
-        
-        TCamino res = new TCamino(origen);
-        boolean tieneCiclo = origen.tieneCiclo(res);
-        
-        if (tieneCiclo) {
-            return res;
-        } else {
-            return null;
-        }
     }
 }

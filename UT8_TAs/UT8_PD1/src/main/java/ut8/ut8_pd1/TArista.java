@@ -1,6 +1,6 @@
-package ut8.ut8_pd1;
+package grupo2.parcial2;
 
-public class TArista implements IArista {
+public class TArista implements IArista, Comparable<TArista> {
 
     protected Comparable etiquetaOrigen;
     protected Comparable etiquetaDestino;
@@ -58,5 +58,16 @@ public class TArista implements IArista {
         builder.append(this.costo);
         
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(TArista o) {
+        if(this.getCosto() > o.getCosto()) {
+            return 1;
+        } else if (this.getCosto() == o.getCosto()) {
+            return 0;
+        } else {
+            return -1;
+        }
     }
 }

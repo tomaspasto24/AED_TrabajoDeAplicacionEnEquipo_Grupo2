@@ -1,4 +1,4 @@
-package ut8.ut8_pd1;
+package grupo2.parcial2;
 
 
 import java.util.Collection;

@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ut8.ut8_pd1;
+package grupo2.parcial2;
 
 import java.util.Objects;
 
+// Código definitivo
 public class Tupla<T, U> {
     public T primero;
     public U segundo;

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ut8.ut8_pd1;
+package grupo2.parcial2;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,46 +10,33 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.Queue;
 
-/**
- *
- * @author santi
- */
 public class TGrafoNoDirigido extends TGrafoDirigido {
 
-    private TAristas aristas = null;
+    private TAristas aristas;
 
     public TGrafoNoDirigido(Collection<TVertice> vertices, Collection<TArista> aristas) {
         super(vertices, aristas);
+        this.aristas = new TAristas();
+        int cont = 0;
+        for (TArista a : aristas) {
+            cont++;
+            this.aristas.insertar(a);
+        }
+//        this.aristas.insertarAmbosSentidos(aristas);
     }
 
     @Override
     public boolean eliminarArista(Comparable nomVerticeOrigen, Comparable nomVerticeDestino) {
-        if (!super.eliminarArista(nomVerticeOrigen, nomVerticeDestino)) {
-            return false;
-        }
-
-        this.aristas.removeIf(a
-                -> (a.etiquetaOrigen.compareTo(nomVerticeOrigen) == 0
-                && a.etiquetaDestino.compareTo(nomVerticeDestino) == 0)
-                || (a.etiquetaOrigen.compareTo(nomVerticeDestino) == 0
-                && a.etiquetaDestino.compareTo(nomVerticeOrigen) == 0)
-        );
-
-        return super.eliminarArista(nomVerticeDestino, nomVerticeOrigen);
+        return super.eliminarArista(nomVerticeOrigen, nomVerticeDestino) && super.eliminarArista(nomVerticeDestino, nomVerticeOrigen);
     }
 
     @Override
     public boolean insertarArista(TArista arista) {
-        if (this.aristas == null) {
-            this.aristas = new TAristas();
-        }
-        
         if (!super.insertarArista(arista)) {
             return false;
         }
-        this.aristas.add(arista);
         TArista opuesto = new TArista(arista.etiquetaDestino, arista.etiquetaOrigen, arista.costo);
         return super.insertarArista(opuesto);
     }
@@ -67,10 +54,16 @@ public class TGrafoNoDirigido extends TGrafoDirigido {
         V.remove(inicio);
 
         while (!V.isEmpty()) {
-            TArista nuevaArista = this.obtenerMinimo(U, V);
+            TArista nuevaArista = this.aristas.buscarMin(U, V);
             res.add(nuevaArista);
-            U.add(nuevaArista.getEtiquetaDestino());
-            V.remove(nuevaArista.getEtiquetaDestino());
+            Comparable etiDestino = nuevaArista.getEtiquetaDestino();
+            if (U.contains(etiDestino)) {
+                U.add(nuevaArista.getEtiquetaOrigen());
+                V.remove(nuevaArista.getEtiquetaOrigen());
+            } else {
+                U.add(etiDestino);
+                V.remove(etiDestino);
+            }
         }
 
         return res;
@@ -84,111 +77,135 @@ public class TGrafoNoDirigido extends TGrafoDirigido {
         return new TGrafoNoDirigido(this.getVertices().values(), this.primAristas(inicio));
     }
 
-    private static Comparable raizDe(Comparable inicio, Map<Comparable, Comparable> componentes) {
-        if (inicio == null) {
-            return null;
-        }
-
-        Comparable aux = componentes.get(inicio);
-        while (aux != null && !inicio.equals(aux)) {
-            inicio = aux;
-            aux = componentes.get(inicio);
-        }
-
-        return inicio;
-    }
-
-    private static void optimizarRaiz(Comparable inicio, Map<Comparable, Comparable> componentes) {
-        if (inicio == null) {
-            return;
-        }
-
-        LinkedList<Comparable> vertices = new LinkedList<>();
-
-        Comparable aux = componentes.get(inicio);
-        while (aux != null && !inicio.equals(aux)) {
-            vertices.add(inicio);
-            inicio = aux;
-            aux = componentes.get(inicio);
-        }
-
-        for (Comparable vertice : vertices) {
-            componentes.put(vertice, inicio);
-        }
-    }
-
     // Los componentes están definidos por su raíz, la cual se representa por un par clave-valor donde la clave y el valor son iguales.
     // Si una etiqueta no apunta a sí misma en el mapa, entonces pertenece al mismo componente que la etiqueta a la cual sí apunta.
     public TGrafoNoDirigido kruskal() {
+        TAristas F = new TAristas();
         int numVertices = this.getVertices().size();
-        Map<Comparable, Comparable> componentes = new HashMap<>(numVertices * 4 / 3);
+        Map<Comparable, Integer> componentes = new HashMap<>();
+        int i = 0;
         for (Comparable vertice : this.getVertices().keySet()) {
-            componentes.put(vertice, vertice);
+            componentes.put(vertice, i);
+            i++;
         }
-
-        TAristas aristas = this.getAristas();
-        aristas.sort((a1, a2) -> Double.compare(a1.costo, a2.costo));
-
-        TAristas res = new TAristas();
-
         int contador = numVertices - 1;
 
         Iterator<TArista> iter = aristas.iterator();
         while (contador > 0 && iter.hasNext()) {
             TArista arista = iter.next();
-            Comparable comp1 = raizDe(arista.etiquetaOrigen, componentes);
-            Comparable comp2 = raizDe(arista.etiquetaDestino, componentes);
+            Integer comp1 = componentes.get(arista.etiquetaOrigen);
+            Integer comp2 = componentes.get(arista.etiquetaDestino);
             if (!comp1.equals(comp2)) {
-                res.add(arista);
-                componentes.put(comp1, comp2);
+                F.add(arista);
+                for (Comparable vertice : this.getVertices().keySet()) {
+                    if (componentes.get(vertice).equals(comp1)) {
+                        componentes.put(vertice, comp2);
+                    }
+                }
                 contador--;
             }
         }
-
         if (contador > 0) {
             return null;
         }
-
-        return new TGrafoNoDirigido(this.getVertices().values(), res);
-    }
-
-    public TArista obtenerMinimo(Collection<Comparable> origenes, Collection<Comparable> destinos) {
-        double min = Double.MAX_VALUE;
-        TArista res = null;
-
-        for (Comparable origenEti : origenes) {
-            TVertice origen = this.buscarVertice(origenEti);
-            for (Comparable destinoEti : destinos) {
-                TAdyacencia ady = origen.buscarAdyacencia(destinoEti);
-                if (ady != null && min > ady.getCosto()) {
-                    min = ady.getCosto();
-                    res = new TArista(origenEti, destinoEti, ady.getCosto());
-                }
-            }
-        }
-
-        return res;
+        TGrafoNoDirigido kruskal = new TGrafoNoDirigido(this.getVertices().values(), F);
+        return kruskal;
     }
 
     @Override
     public TAristas getAristas() {
-        TAristas res = new TAristas();
+        return this.aristas;
+    }
 
-        List<Comparable> verticesVisitados = new LinkedList<>();
-        for (Map.Entry<Comparable, TVertice> entrada : this.getVertices().entrySet()) {
-            Comparable origenEti = entrada.getKey();
-            TVertice origen = entrada.getValue();
-
-            for (Object ob : origen.getAdyacentes()) {
-                TAdyacencia ady = (TAdyacencia) ob;
-                if (!verticesVisitados.contains(ady.getEtiqueta())) {
-                    res.add(new TArista(origenEti, ady.getEtiqueta(), ady.getCosto()));
+    public Collection<TVertice> bea() {
+        Collection<TVertice> res = new LinkedList<>();
+        if (this.getVertices() != null) {
+            for (TVertice vertice : this.getVertices().values()) {
+                if (!vertice.getVisitado()) {
+                    vertice.bea(res);
                 }
             }
+            this.limpiarVisitados();
+        }
+        return res;
+    }
 
-            verticesVisitados.add(origenEti);
+    @Override
+    public Collection<TVertice> bea(Comparable etiquetaOrigen) {
+        TVertice origen = this.getVertices().get(etiquetaOrigen);
+        if (origen == null) {
+            return null;
         }
 
+        return this.bea(origen);
+    }
+
+    public Collection<TVertice> bea(TVertice origen) {
+        if (origen.getVisitado()) {
+            return null;
+        }
+
+        Collection<TVertice> res = new LinkedList<>();
+        origen.bea(res);
+
+        this.limpiarVisitados();
+        return res;
+    }
+
+    public int distanciaBEA(Comparable origenEti, Comparable destinoEti) {
+        if (destinoEti.compareTo(origenEti) == 0) {
+            return 0;
+        }
+
+        if (!this.existeVertice(destinoEti)) {
+            return -1;
+        }
+
+        TVertice origen = this.getVertices().get(origenEti);
+        Map<Comparable, Integer> distanciaBEADicc = new HashMap<>(getVertices().size());
+
+        Queue<TVertice> cola = new LinkedList<>();
+
+        origen.setVisitado(true);
+        distanciaBEADicc.put(origen.getEtiqueta(), 0);
+        cola.offer(origen);
+
+        while (!cola.isEmpty()) {
+            TVertice x = cola.poll();
+            for (Object adyOb : x.getAdyacentes()) {
+                TAdyacencia ady = (TAdyacencia) adyOb;
+
+                TVertice y = ady.getDestino();
+                if (!y.getVisitado()) {
+                    int distanciaBEA = distanciaBEADicc.get(x.getEtiqueta()) + 1;
+
+                    if (y.getEtiqueta().compareTo(destinoEti) == 0) {
+                        this.limpiarVisitados();
+                        return distanciaBEA;
+                    }
+
+                    distanciaBEADicc.put(y.getEtiqueta(), distanciaBEA);
+                    y.setVisitado(true);
+                    cola.offer(y);
+                }
+            }
+        }
+        this.limpiarVisitados();
+        return Integer.MAX_VALUE;
+    }
+
+    // Precondiciones:
+    //     El grafo tiene al menos un vértice
+    //     El grafo es conexo
+    public List<Comparable> puntosArticulacion() {
+        if (this.getVertices().isEmpty()) {
+            return new LinkedList<>();
+        }
+
+        TVertice origen = this.getVertices().values().iterator().next();
+        List<Comparable> res = new LinkedList<>();
+        origen.puntosArticulacion(new int[1], res, new HashMap<>(), null);
+        this.limpiarVisitados();
         return res;
     }
 

@@ -1,4 +1,4 @@
-package ut8.ut8_pd1;
+package grupo2.parcial2;
 
 
 import java.util.Map;
@@ -83,7 +83,7 @@ public interface IGrafoDirigido {
      */
     boolean insertarVertice(TVertice vertice);
 
-    Comparable obtenerExcentricidad(Comparable etiquetaVertice);
+    Double obtenerExcentricidad(Comparable etiquetaVertice);
 
    /**
      *ejecuta el algoritmo de Warshall para halla la cerradura transitiva del grafo. 
@@ -91,5 +91,7 @@ public interface IGrafoDirigido {
      */
     boolean[][] warshall();
     
-    public Map<Comparable, TVertice> getVertices(); 
+    Map<Comparable, TVertice> getVertices(); 
+    
+    
 }

@@ -1,8 +1,10 @@
-package ut8.ut8_pd1;
+package grupo2.parcial2;
 
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Map;
 
 public class TVertice<T> implements IVertice {
 
@@ -150,24 +152,83 @@ public class TVertice<T> implements IVertice {
         return todosLosCaminos;
     }
 
-    public boolean tieneCiclo(TCamino camino) {
+    public void bea(Collection<TVertice> visitados) {
         this.setVisitado(true);
-        for (TAdyacencia ady : this.getAdyacentes()) {
-            TVertice adyacente = ady.getDestino();
-            if (!adyacente.getVisitado()) {
-                camino.agregarAdyacencia(ady);
-                if (adyacente.tieneCiclo(camino)) {
-                    return true;
+        visitados.add(this);
+        Queue<TVertice> cola = new LinkedList<>();
+        cola.offer(this);
+
+        while (!cola.isEmpty()) {
+            TVertice x = cola.poll();
+            for (Object adyOb : x.getAdyacentes()) {
+                TAdyacencia ady = (TAdyacencia) adyOb;
+
+                TVertice y = ady.getDestino();
+                if (!y.getVisitado()) {
+                    y.setVisitado(true);
+                    visitados.add(y);
+                    cola.offer(y);
                 }
-                camino.eliminarAdyacencia(ady);
-            } else if (
-                    adyacente == camino.getOrigen() ||
-                    camino.getOtrosVertices().contains(adyacente.getEtiqueta())) {
-                camino.agregarAdyacencia(ady);
-                return true;
             }
         }
-        return false;
+    }
+    
+    public int puntosArticulacion(int[] numeracionSrc, List<Comparable> lista, Map<Comparable, Integer> numeraciones, TVertice padre) {
+        this.visitado = true;
+        
+        numeracionSrc[0]++;
+        int numeracion = numeracionSrc[0];
+        numeraciones.put(this.getEtiqueta(), numeracion);
+        
+        // Almacena solamente el máximo de los bajos de sus hijos para compararlo con su numeración.
+        int bajoDeHijoMaximo = -1;
+        
+        // Almacenar número de hijos para confirmar caso del vértice.
+        int numHijos = 0;
+        
+        int bajo = numeracion;
+        for (TAdyacencia adyacencia : this.getAdyacentes()) {
+            TVertice destino = adyacencia.getDestino();
+            
+            if (!destino.visitado) {
+                numHijos++;
+                
+                // Calcular en post-orden el bajo del hijo (y revisar si es punto de articulación)
+                int bajoDelHijo = destino.puntosArticulacion(numeracionSrc, lista, numeraciones, this);
+                
+                // Calcular mínimo para el bajo
+                if (bajoDelHijo < bajo) {
+                    bajo = bajoDelHijo;
+                }
+                
+                // Calcular máximo de los bajos de los hijos
+                if (bajoDelHijo > bajoDeHijoMaximo) {
+                    bajoDeHijoMaximo = bajoDelHijo;
+                }
+                
+            } else if (destino != padre) {
+                
+                int numDestino = numeraciones.get(destino.getEtiqueta());
+                
+                // Calcular mínimo para el hijo
+                if (numDestino < bajo) {
+                    bajo = numDestino;
+                }
+                
+            }
+        }
+        
+        if (padre != null) {
+            if (bajoDeHijoMaximo >= numeracion) {
+                lista.add(this.getEtiqueta());
+            }
+        } else {
+            if (numHijos >= 2) {
+                lista.add(this.getEtiqueta());
+            }
+        }
+        
+        return bajo;
     }
 
 }
