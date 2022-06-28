@@ -1,5 +1,7 @@
 package grupo2.ut9_ta4;
 
+import java.util.Random;
+
 public class TClasificador {
 
     public static final int METODO_CLASIFICACION_INSERCION = 1;
@@ -157,8 +159,26 @@ public class TClasificador {
         return 0;
     }
     
-    private int encuentraPivote(int i, int j, int[] entrada) {
-        throw new RuntimeException();
+    private int encuentraPivoteElementoCentral(int i, int j) {
+        return (int) (j - 1) / 2;
     }
 
+    private int encuentraPivote(int i, int j, int[] entrada) {
+        int primero = entrada[i];
+        int cont = 0;
+        for(int num : entrada) {
+            cont++;
+            if (num != primero) {
+                return (Math.max(num, primero) == num) ? cont : i;
+            }
+        }
+        return -1; // TODOS LOS ELEMENTOS SON IGUALES.
+    }
+    
+    private int encuentraPivoteRandom(int i, int j, int[] entrada) {
+        int seed = 42;
+        Random ran = new Random();
+        ran.setSeed(seed);
+        return ran.nextInt(i, j);
+    }    
 }
