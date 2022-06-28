@@ -156,8 +156,7 @@ public class TClasificador {
         return -1; // TODOS LOS ELEMENTOS SON IGUALES.
     }
     
-    private int encuentraPivoteRandom(int i, int j, int[] entrada) {
-        int seed = 42;
+    private int encuentraPivoteRandom(int i, int j, int[] entrada, int seed) {
         Random ran = new Random();
         ran.setSeed(seed);
         return ran.nextInt(i, j);
