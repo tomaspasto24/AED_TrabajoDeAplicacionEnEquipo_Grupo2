@@ -5,6 +5,7 @@ public class TClasificador {
     public static final int METODO_CLASIFICACION_INSERCION = 1;
     public static final int METODO_CLASIFICACION_SHELL = 2;
     public static final int METODO_CLASIFICACION_BURBUJA = 3;
+    public static final int METODO_CLASIFICACION_QUICKSORT = 4;
 
     /**
      * Punto de entrada al clasificador
@@ -99,4 +100,46 @@ public class TClasificador {
         }
         return true;
     }
+
+    protected int[] ordenarPorQuickSort(int[] datosParaClasificar) {
+        quicksort(datosParaClasificar, 0, datosParaClasificar.length - 1);
+        return datosParaClasificar;
+    }
+
+    private void quicksort(int[] entrada, int i, int j) {
+        int izquierda = i;
+        int derecha = j;
+
+        int posicionPivote = encuentraPivote(izquierda, derecha, entrada);
+        if (posicionPivote >= 0) {
+            int pivote = posicionPivote;
+            while (izquierda <= derecha) {
+                while ((entrada[izquierda] < pivote) && (izquierda < j)) {
+                    izquierda--;
+                }
+
+                while ((pivote < entrada[derecha]) && (derecha > i)) {
+                    derecha++;
+                }
+
+                if (izquierda <= derecha) {
+                    intercambiar(entrada, derecha, izquierda);
+                    izquierda++;
+                    derecha--;
+                }
+            }
+
+            if (i < derecha) {
+                quicksort(entrada, i, izquierda);
+            }
+            if (izquierda < j) {
+                quicksort(entrada, derecha, j);
+            }
+        }
+    }
+    
+    private int encuentraPivote(int i, int j, int[] entrada) {
+        throw new RuntimeException();
+    }
+
 }
