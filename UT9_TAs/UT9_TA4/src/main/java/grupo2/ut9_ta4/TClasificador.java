@@ -1,4 +1,4 @@
-package com.mycompany.ut9_ta1;
+package grupo2.ut9_ta4;
 
 public class TClasificador {
 
@@ -102,24 +102,28 @@ public class TClasificador {
     }
 
     protected int[] ordenarPorQuickSort(int[] datosParaClasificar) {
-        quicksort(datosParaClasificar, 0, datosParaClasificar.length - 1);
+        int altura = quicksort(datosParaClasificar, 0, datosParaClasificar.length - 1);
+        System.out.println("Altura: " + altura);
         return datosParaClasificar;
     }
 
-    private void quicksort(int[] entrada, int i, int j) {
+    private int quicksort(int[] entrada, int i, int j) {
         int izquierda = i;
         int derecha = j;
 
         int posicionPivote = encuentraPivote(izquierda, derecha, entrada);
         if (posicionPivote >= 0) {
-            int pivote = posicionPivote;
+            // El pivote es el elemento de la entrada cuyo índice es "posicionPivote".
+            int pivote = entrada[posicionPivote];
             while (izquierda <= derecha) {
                 while ((entrada[izquierda] < pivote) && (izquierda < j)) {
-                    izquierda--;
+                    // L debe moverse a la derecha.
+                    izquierda++;
                 }
 
                 while ((pivote < entrada[derecha]) && (derecha > i)) {
-                    derecha++;
+                    // R debe moverse a la izquierda.
+                    derecha--;
                 }
 
                 if (izquierda <= derecha) {
@@ -128,14 +132,29 @@ public class TClasificador {
                     derecha--;
                 }
             }
+            
+            int maxAltura = 0;
 
+            // Un tercer error relacionado con las llamadas recursivas,
+            // respecto a los límites de los subarreglos.
             if (i < derecha) {
-                quicksort(entrada, i, izquierda);
+                // derecha es el fin del subvector izquierdo.
+                int alturaIzquierda = quicksort(entrada, i, derecha);
+                if (maxAltura < alturaIzquierda) {
+                    maxAltura = alturaIzquierda;
+                }
             }
             if (izquierda < j) {
-                quicksort(entrada, derecha, j);
+                // izquierda es el fin del subvector derecho.
+                int alturaDerecha = quicksort(entrada, izquierda, j);
+                if (maxAltura < alturaDerecha) {
+                    maxAltura = alturaDerecha;
+                }
             }
+            
+            return maxAltura + 1;
         }
+        return 0;
     }
     
     private int encuentraPivote(int i, int j, int[] entrada) {

@@ -1,6 +1,4 @@
-package com.mycompany.ut9_ta1;
-
-
+package grupo2.ut9_ta4;
 
 import java.util.Random;
 

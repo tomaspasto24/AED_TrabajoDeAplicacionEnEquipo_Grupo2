@@ -1,0 +1,5 @@
+El pivote es el elemento de la entrada cuyo índice es "posicionPivote".
+
+L debe moverse a la derecha, R debe moverse a la izquierda.
+
+Un tercer error relacionado con las llamadas recursivas, respecto a los límites de los subarreglos.

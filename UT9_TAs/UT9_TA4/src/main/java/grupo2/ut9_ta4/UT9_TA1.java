@@ -3,11 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
 
-package com.mycompany.ut9_ta1;
+package grupo2.ut9_ta4;
 
-import static com.mycompany.ut9_ta1.TClasificador.METODO_CLASIFICACION_INSERCION;
-import static com.mycompany.ut9_ta1.TClasificador.METODO_CLASIFICACION_SHELL;
-import static com.mycompany.ut9_ta1.TClasificador.METODO_CLASIFICACION_BURBUJA;
+import static grupo2.ut9_ta4.TClasificador.METODO_CLASIFICACION_INSERCION;
+import static grupo2.ut9_ta4.TClasificador.METODO_CLASIFICACION_SHELL;
+import static grupo2.ut9_ta4.TClasificador.METODO_CLASIFICACION_BURBUJA;
 import java.util.Arrays;
 
 /**
