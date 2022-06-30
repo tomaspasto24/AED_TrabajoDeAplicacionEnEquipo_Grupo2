@@ -8,6 +8,7 @@ public class TClasificador {
     public static final int METODO_CLASIFICACION_SHELL = 2;
     public static final int METODO_CLASIFICACION_BURBUJA = 3;
     public static final int METODO_CLASIFICACION_QUICKSORT = 4;
+    public static final int METODO_CLASIFICACION_HEAPSORT = 5;
 
     /**
      * Punto de entrada al clasificador
@@ -26,6 +27,10 @@ public class TClasificador {
                 return ordenarPorShell(datosParaClasificar);
             case METODO_CLASIFICACION_BURBUJA:
                 return ordenarPorBurbuja(datosParaClasificar);
+            case METODO_CLASIFICACION_QUICKSORT:
+                return ordenarPorQuickSort(datosParaClasificar);
+            case METODO_CLASIFICACION_HEAPSORT:
+                return ordenarPorHeapSort(datosParaClasificar);
             default:
                 System.err.println("Este codigo no deberia haberse ejecutado");
                 break;
@@ -134,7 +139,7 @@ public class TClasificador {
                     derecha--;
                 }
             }
-            
+
             int maxAltura = 0;
 
             // Un tercer error relacionado con las llamadas recursivas,
@@ -153,12 +158,12 @@ public class TClasificador {
                     maxAltura = alturaDerecha;
                 }
             }
-            
+
             return maxAltura + 1;
         }
         return 0;
     }
-    
+
     private int encuentraPivoteElementoCentral(int i, int j) {
         return (int) (j - 1) / 2;
     }
@@ -166,7 +171,7 @@ public class TClasificador {
     private int encuentraPivote(int i, int j, int[] entrada) {
         int primero = entrada[i];
         int cont = 0;
-        for(int num : entrada) {
+        for (int num : entrada) {
             cont++;
             if (num != primero) {
                 return (Math.max(num, primero) == num) ? cont : i;
@@ -174,53 +179,52 @@ public class TClasificador {
         }
         return -1; // TODOS LOS ELEMENTOS SON IGUALES.
     }
-    
+
     private int encuentraPivoteRandom(int i, int j, int[] entrada, int seed) {
         Random ran = new Random();
         ran.setSeed(seed);
         return ran.nextInt(i, j);
-    }    
-    
+    }
+
     protected int[] ordenarPorHeapSort(int[] datosParaClasificar) {
-		for (int i = (datosParaClasificar.length - 1) / 2; i >= 0; i--) { //Armo el heap inicial de n-1 div 2 hasta 0
-			armaHeap(datosParaClasificar, i, datosParaClasificar.length - 1);
-		}
-		for (int i = datosParaClasificar.length - 1; i  > 1; i--) {
-			intercambiar(datosParaClasificar,0,i);
-			armaHeap(datosParaClasificar, 0, i-1);
-		}
-		return datosParaClasificar;
-	}
+        for (int i = (datosParaClasificar.length - 1) / 2; i >= 0; i--) { //Armo el heap inicial de n-1 div 2 hasta 0
+            armaHeap(datosParaClasificar, i, datosParaClasificar.length - 1);
+        }
+        
+        // El bucle termina si i > 0
+        for (int i = datosParaClasificar.length - 1; i > 0; i--) {
+            intercambiar(datosParaClasificar, 0, i);
+            armaHeap(datosParaClasificar, 0, i - 1);
+        }
+        return datosParaClasificar;
+    }
 
-	private void armaHeap(int[] datosParaClasificar, int primero, int ultimo) {
-		if (primero < ultimo){
-			int r = primero;
-			while(r <= ultimo / 2){
-				if (ultimo == 2*r){ //r tiene un hijo solo
-						if (datosParaClasificar[r] < datosParaClasificar[r*2]){
-							intercambiar(datosParaClasificar, r, 2 * r);
-							r = 2 ;
-						} else {
-							r = ultimo;
-						}
-				} else { //r tiene 2 hijos
-					int posicionIntercambio = 0;
-					if (datosParaClasificar[2*r] > datosParaClasificar[2*r + 1]){
-						posicionIntercambio = 2 * r +1;
-					} else {
-						posicionIntercambio = 2 * r;
-					}
-					if (datosParaClasificar[r] < datosParaClasificar[posicionIntercambio]){
-						intercambiar(datosParaClasificar,r,posicionIntercambio);
-						r = posicionIntercambio;
-					} else {
-						r = ultimo;
-					}
-				}
-			}			
-		}
-	}
-
-
+    private void armaHeap(int[] datosParaClasificar, int primero, int ultimo) {
+        if (primero < ultimo) {
+            int r = primero;
+            // Los hijos están en 2r+1 y 2r+2
+            while ((r * 2 + 1) <= ultimo) {
+                if (ultimo == 2 * r + 1) { //r tiene un hijo solo
+                    if (datosParaClasificar[r] < datosParaClasificar[r * 2 + 1]) {
+                        intercambiar(datosParaClasificar, r, 2 * r + 1);
+                    }
+                    r = ultimo;
+                } else { //r tiene 2 hijos
+                    int posicionIntercambio = 0;
+                    if (datosParaClasificar[2 * r + 1] > datosParaClasificar[2 * r + 2]) {
+                        posicionIntercambio = 2 * r + 2;
+                    } else {
+                        posicionIntercambio = 2 * r + 1;
+                    }
+                    if (datosParaClasificar[r] < datosParaClasificar[posicionIntercambio]) {
+                        intercambiar(datosParaClasificar, r, posicionIntercambio);
+                        r = posicionIntercambio;
+                    } else {
+                        r = ultimo;
+                    }
+                }
+            }
+        }
+    }
 
 }
