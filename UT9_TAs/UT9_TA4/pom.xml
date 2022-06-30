@@ -28,6 +28,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>grupo2.ut9_ta4.UT9_TA4</exec.mainClass>
+        <exec.mainClass>grupo2.ut9_ta4.UT9_TA6</exec.mainClass>
     </properties>
 </project>
