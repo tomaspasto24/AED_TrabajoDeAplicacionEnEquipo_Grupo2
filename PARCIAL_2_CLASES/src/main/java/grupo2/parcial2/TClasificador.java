@@ -1,6 +1,9 @@
-package grupo2.ut9_ta4;
+package grupo2.parcial2;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
+import java.util.function.Function;
 
 public class TClasificador {
 
@@ -9,14 +12,14 @@ public class TClasificador {
     public static final int METODO_CLASIFICACION_BURBUJA = 3;
     public static final int METODO_CLASIFICACION_QUICKSORT = 4;
     public static final int METODO_CLASIFICACION_HEAPSORT = 5;
-    
+    public static final int METODO_CLASIFICACION_RADIXSORT = 6;
+
     private final Random ran;
-    
+
     public TClasificador() {
         this.ran = new Random();
         this.ran.setSeed(42);
     }
-
 
     /**
      * Punto de entrada al clasificador
@@ -39,6 +42,8 @@ public class TClasificador {
                 return ordenarPorQuickSort(datosParaClasificar);
             case METODO_CLASIFICACION_HEAPSORT:
                 return ordenarPorHeapSort(datosParaClasificar);
+            case METODO_CLASIFICACION_RADIXSORT:
+                return ordenarPorRadixSort(datosParaClasificar);
             default:
                 System.err.println("Este codigo no deberia haberse ejecutado");
                 break;
@@ -195,7 +200,7 @@ public class TClasificador {
         for (int i = (datosParaClasificar.length - 1) / 2; i >= 0; i--) { //Armo el heap inicial de n-1 div 2 hasta 0
             armaHeap(datosParaClasificar, i, datosParaClasificar.length - 1);
         }
-        
+
         // El bucle termina si i > 0
         for (int i = datosParaClasificar.length - 1; i > 0; i--) {
             intercambiar(datosParaClasificar, 0, i);
@@ -232,4 +237,38 @@ public class TClasificador {
         }
     }
 
+    // Funciona con números de hasta cinco dígitos, pues solo toma aquellos
+    // como claves.
+    private int[] ordenarPorRadixSort(int[] datosParaClasificar) {
+        // Determina cuáles son las múltiples claves para cada paso del ordenamiento,
+        // del menos significativo al más significativo.
+        ArrayList<Function<Integer, Integer>> selectoresDeClaves = new ArrayList<>(5);
+        selectoresDeClaves.add(i -> i % 10);
+        selectoresDeClaves.add(i -> (i / 10) % 10);
+        selectoresDeClaves.add(i -> (i / 100) % 10);
+        selectoresDeClaves.add(i -> (i / 1000) % 10);
+        selectoresDeClaves.add(i -> (i / 10000) % 10);
+
+        // Function<T, U> es una interfaz que representa métodos en forma de objetos
+        for (Function<Integer, Integer> selectorClaves : selectoresDeClaves) {
+            ArrayList<LinkedList<Integer>> urnas = new ArrayList<>(10);
+            for (int i = 0; i < 10; i++) {
+                urnas.add(new LinkedList<>());
+            }
+
+            for (int dato : datosParaClasificar) {
+                urnas.get(selectorClaves.apply(dato)).add(dato);
+            }
+
+            int i = 0;
+            for (LinkedList<Integer> urna : urnas) {
+                for (Integer el : urna) {
+                    datosParaClasificar[i] = el;
+                    i++;
+                }
+            }
+        }
+
+        return datosParaClasificar;
+    }
 }
