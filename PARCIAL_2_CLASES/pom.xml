@@ -37,7 +37,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <exec.mainClass>ut8.ut8_pd1.PruebaGrafo</exec.mainClass>
+        <exec.mainClass>grupo2.parcial2.Main</exec.mainClass>
     </properties>
     <name>PARCIAL_2_CLASES</name>
 </project>
