@@ -208,7 +208,7 @@ public class TClasificador {
             armaHeap(datosParaClasificar, 0, i - 1);
         }
         
-        for (int i = datosParaClasificar.length / 2; i >= 0; i--) {
+        for (int i = (datosParaClasificar.length - 1) / 2; i >= 0; i--) {
             intercambiar(datosParaClasificar, i, datosParaClasificar.length - 1 - i);
         }
         
