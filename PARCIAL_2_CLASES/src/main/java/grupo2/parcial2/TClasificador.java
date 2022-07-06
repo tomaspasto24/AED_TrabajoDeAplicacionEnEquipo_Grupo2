@@ -115,7 +115,7 @@ public class TClasificador {
 
     public boolean estaOrdenado(int[] vector) {
         for (int i = 0; i < (vector.length - 1); i++) {
-            if (vector[i] >= vector[i + 1]) {
+            if (vector[i] > vector[i + 1]) {
                 return false;
             }
         }
