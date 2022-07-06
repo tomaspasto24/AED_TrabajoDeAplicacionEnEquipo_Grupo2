@@ -79,6 +79,7 @@ public class TClasificador {
                 }
             }
         }
+        
         return datosParaClasificar;
     }
 
@@ -197,7 +198,7 @@ public class TClasificador {
     }
 
     protected int[] ordenarPorHeapSort(int[] datosParaClasificar) {
-        for (int i = (datosParaClasificar.length - 1) / 2; i >= 0; i--) { //Armo el heap inicial de n-1 div 2 hasta 0
+        for (int i = (datosParaClasificar.length - 2) / 2; i >= 0; i--) { //Armo el heap inicial de n-1 div 2 hasta 0
             armaHeap(datosParaClasificar, i, datosParaClasificar.length - 1);
         }
 
@@ -206,6 +207,11 @@ public class TClasificador {
             intercambiar(datosParaClasificar, 0, i);
             armaHeap(datosParaClasificar, 0, i - 1);
         }
+        
+        for (int i = datosParaClasificar.length / 2; i >= 0; i--) {
+            intercambiar(datosParaClasificar, i, datosParaClasificar.length - 1 - i);
+        }
+        
         return datosParaClasificar;
     }
 
@@ -215,7 +221,7 @@ public class TClasificador {
             // Los hijos están en 2r+1 y 2r+2
             while ((r * 2 + 1) <= ultimo) {
                 if (ultimo == 2 * r + 1) { //r tiene un hijo solo
-                    if (datosParaClasificar[r] < datosParaClasificar[r * 2 + 1]) {
+                    if (datosParaClasificar[r] > datosParaClasificar[r * 2 + 1]) {
                         intercambiar(datosParaClasificar, r, 2 * r + 1);
                     }
                     r = ultimo;
@@ -226,7 +232,7 @@ public class TClasificador {
                     } else {
                         posicionIntercambio = 2 * r + 1;
                     }
-                    if (datosParaClasificar[r] < datosParaClasificar[posicionIntercambio]) {
+                    if (datosParaClasificar[r] > datosParaClasificar[posicionIntercambio]) {
                         intercambiar(datosParaClasificar, r, posicionIntercambio);
                         r = posicionIntercambio;
                     } else {

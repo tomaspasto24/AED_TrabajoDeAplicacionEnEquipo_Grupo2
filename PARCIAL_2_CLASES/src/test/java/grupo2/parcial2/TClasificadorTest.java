@@ -14,9 +14,9 @@ import java.util.Arrays;
  * @author santi
  */
 public class TClasificadorTest {
-    
+
     private GeneradorDatosGenericos generador = new GeneradorDatosGenericos();
-    
+
     public TClasificadorTest() {
     }
 
@@ -25,7 +25,7 @@ public class TClasificadorTest {
         int[] vector = generador.generarDatosAleatorios();
         TClasificador clasificador = new TClasificador();
     }
-    
+
     @Test
     public void testOrdenarPorRadixSort() {
         int[] vector = generador.generarDatosAleatorios(99999);
@@ -35,6 +35,17 @@ public class TClasificadorTest {
         System.out.println("Despues: " + Arrays.toString(vector));
         assertTrue(clasificador.estaOrdenado(vector));
     }
-    
-    
+
+    @Test
+    public void testOrdenarPorHeapsort() {
+        for (int i = 0; i < 10; i++) {
+            int[] vector = generador.generarDatosAleatorios(99999);
+            TClasificador clasificador = new TClasificador();
+            System.out.println("Antes  : " + Arrays.toString(vector));
+            vector = clasificador.clasificar(vector, METODO_CLASIFICACION_HEAPSORT);
+            System.out.println("Despues: " + Arrays.toString(vector));
+            assertTrue(clasificador.estaOrdenado(vector));
+        }
+    }
+
 }
